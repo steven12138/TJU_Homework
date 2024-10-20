@@ -1,0 +1,22 @@
+traceroute to ethz.ch (129.132.19.216), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.1.1) [*]  1.720 ms  1.777 ms *
+ 2  221.221.144.1 (221.221.144.1) [AS4808]  8.561 ms * *
+ 3  * * *
+ 4  * * *
+ 5  * 219.158.9.202 (219.158.9.202) [AS4837]  11.178 ms *
+ 6  219.158.16.70 (219.158.16.70) [AS4837]  14.666 ms * *
+ 7  219.158.96.42 (219.158.96.42) [AS4837]  273.432 ms * *
+ 8  sjo-b23-link.ip.twelve99.net (80.239.135.4) [AS1299]  204.989 ms * *
+ 9  * * nyk-bb2-link.ip.twelve99.net (62.115.119.228) [AS1299]  306.781 ms
+10  * * ldn-bb2-link.ip.twelve99.net (62.115.139.247) [AS1299]  306.874 ms
+11  prs-bb2-link.ip.twelve99.net (62.115.133.239) [AS1299]  306.886 ms * *
+12  ffm-bb2-link.ip.twelve99.net (62.115.122.139) [AS1299]  307.005 ms * *
+13  zch-b1-link.ip.twelve99.net (62.115.138.47) [AS1299]  306.364 ms * *
+14  dante-ic-383626.ip.twelve99-cust.net (213.248.79.190) [AS1299]  307.053 ms * *
+15  swiEZ2-B3.switch.ch (130.59.36.176) [AS559]  315.127 ms * *
+16  swiEZ3-B1.switch.ch (130.59.36.126) [AS559]  331.600 ms * *
+17  rou-gw-lee-tengig-to-switch.ethz.ch (192.33.92.1) [AS559]  312.188 ms * *
+18  rou-fw-rz-rz-gw.ethz.ch (192.33.92.169) [AS559]  344.007 ms * *
+19  * * lb-lee-service-id-bd-unix-lb-out-1.ethz.ch (129.132.19.195) [AS559]  306.816 ms
+20  * * *
+21  cms-publish.ethz.ch (129.132.19.216) [AS559]  306.731 ms * *

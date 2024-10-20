@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} % For Unicode characters
+\usepackage{amsmath}        % For mathematical symbols
+\usepackage{graphicx}       % For including images
+\usepackage{hyperref}       % For hyperlinks
+\usepackage{geometry}      % For setting page margins
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+\setlength{\parindent}{0pt} 
+
+\title{Engineering Optics, Homework 7}
+\author{He Tianyang}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+\textbf{Chapter 11, Problem 1}\\\\
+The standerdized electric wave equation is given by
+\begin{equation}
+    \mathbf{E} = \mathbf{A}cos\left[2\pi\nu(\frac{z}{c}-t)+\phi\right]
+\end{equation}
+
+form the given equation, we can see that
+\begin{align*}
+    \omega  & = 2\pi\nu = 2\pi\cdot 10^{14} \textbf{rad\slash s}                               \\
+    \nu     & = 10^{14} \textbf{Hz}                                                            \\
+    \lambda & = cT = \frac{c}{\nu} = \frac{3\times 10^8}{10^{14}} = 3\times 10^{-6} \textbf{m} \\
+    A       & =2\textbf{V\slash m}
+\end{align*}
+
+when $z=0$, $t=0$, we can solve that $\mathbf{\phi_0 = \frac{\pi}{2}}$. Also, we can know from the expression that electric vector is along the \textbf{y-axis direction}.
+
+\section{Problem 2}
+\textbf{Chapter 11, Problem 2}\\\\
+
+The standerdized electric wave equation is given by
+\begin{equation}
+    \mathbf{E} = \mathbf{A}cos\left[2\pi\nu(\frac{z}{c/n}-t)\right] = \mathbf{A}cos\left[2\pi\nu(\frac{z}{\lambda}-\nu t)\right] = 10^2\cos\left[2\pi\cdot\frac{10^15}{2}\cdot\left(\frac{z}{0.65c}-t\right)\right]
+\end{equation}
+
+Therefore, comparing the given equation with the standerdized electric wave equation, we can solve that
+\begin{align*}
+    \nu     & = \frac{10^15}{2} = 5\times 10^{14} \textbf{Hz}                               \\
+    \lambda & = \frac{2\times 0.65c}{10^15} = 3.9\cdot 10^{-7} \textbf{m} = 390 \textbf{nm} \\
+    n       & = \frac{1}{0.65} = 1.538
+\end{align*}
+
+\section{Problem 3}
+\textbf{Chapter 11, Problem 3}\\\\
+
+The standerdized complex form of the electric wave equation is given by
+\begin{equation}
+    \mathbf{E} = \mathbf{A}\cdot \exp{\left[i\mathbf{k}(x\cos{\alpha}+y\cos{\beta}+z\cos{\gamma})\right]}
+\end{equation}
+
+By given, we have
+\begin{align}
+    \cos{\alpha} & = \frac{\sqrt{3}}{2} \\
+    \cos{\beta}  & = \frac{1}{2}        \\
+    \cos{\gamma} & = 0
+\end{align}
+
+Therefore, we can solve that
+\begin{align*}
+    A_0 & = x_0cos{120 ^\circ}+y_0cos{30 ^\circ} \\
+    k_0 & =x_0\cos{30 ^\circ}+y_0\cos{60 ^\circ} \\
+\end{align*}
+
+\section{Problem 4}
+\textbf{Chapter 11, Problem 4}\\\\
+
+the optical path change $\Delta$ is given by
+\begin{equation*}
+    \Delta = (n-1)h = 0.005 \textbf{mm}
+\end{equation*}
+
+and the phase difference $\delta$ is given by
+\begin{equation*}
+    \delta = \frac{\Delta}{\lambda}\cdot 2\pi = \frac{0.005\times 10^6}{0.5}\cdot 2\pi = 20\pi \textbf{rad}
+\end{equation*}
+
+\section{Problem 5}
+\textbf{Chapter 11, Problem 12}\\\\
+
+The incident angle $i_b$ is given by the Brewster's law
+\begin{equation*}
+    \tan{i_b} = \arctan{\frac{n_2}{n_1}}
+\end{equation*}
+
+and based on the geometry relationship, we have
+\begin{equation*}
+    \tan{i_z}  = \frac{\pi}{2} - i_b
+\end{equation*}
+
+Therefore,
+\begin{equation*}
+    \tan{i_z} =\operatorname{cot}i_b = \frac{n1}{n2} = \frac{n3}{n2} = i_{zb}
+\end{equation*}
+
+That means the full polarization will also occur at the bottom surface of the glas plate.
+
+\section{Problem 6}
+\textbf{Chapter 11, Problem 23}\\\\
+
+By given, we have
+\begin{align*}
+    E  = E_1+E_2 & = a_1\cos{\omega t-\alpha_1}+a_2\cos{(\omega t-\alpha_2)}                        \\
+                 & = Acos(\alpha - \omega t)                                                        \\
+    A^2          & = a_1^2+a_2^2+2a_1a_2\cos{(\alpha_1-\alpha_2)}                                   \\
+                 & = 10 \textbf{V\slash m}                                                          \\
+    \tan{\alpha} & =\frac{a_1\sin{\alpha_1}+a_2\sin{\alpha_2}}{a_1\cos{\alpha_1}+a_2\cos{\alpha_2}} \\
+                 & = \frac{4}{3}
+\end{align*}
+
+Therefore, we can solve that
+\begin{equation*}
+    E = 10\cos(53.13^\circ - 2\pi\times10^{15}t)
+\end{equation*}
+
+\section{Problem 7}
+\textbf{Chapter 11, Problem 24}\\\\
+\begin{align*}
+    E_1 = \alpha\cos{\left(kx+\omega t\right)} = A\exp{\left[i(-kx-\omega t)\right]} \\
+    E_2 = -\alpha\cos{\left(kx-\omega t\right)} = -A\exp{\left[i(kx-\omega t)\right]}
+\end{align*}
+
+Therefore
+\begin{align*}
+    E = E_1+E_2   & = Aexp{\left[i(-kx-\omega t)\right]}-Aexp{\left[i(kx-\omega t)\right]} \\
+                  & = 2iA\sin{kx}\exp{\left[i(-\omega t)\right]}                           \\
+    \Rightarrow E & = -2a\sin{kx}\cos{\omega t}
+\end{align*}
+
+\section{Problem 8}
+\textbf{Chapter 11, Problem 30}\\\\
+
+When $z=0$, we have
+\begin{align*}
+    \omega t = 0              & \Rightarrow E_x = A, E_y = -\frac{A}{\sqrt{2}} \\
+    \omega t = \frac{\pi}{4}  & \Rightarrow E_x = \frac{A}{\sqrt{2}}, E_y = -A \\
+    \omega t = \frac{\pi}{2}  & \Rightarrow E_x = 0, E_y = -\frac{A}{\sqrt{2}} \\
+    \omega t = \pi            & \Rightarrow E_x = -A, E_y = \frac{A}{\sqrt{2}} \\
+    \omega t = \frac{3\pi}{2} & \Rightarrow E_x = 0, E_y = \frac{A}{\sqrt{2}}
+\end{align*}
+
+Therefore, this is \textbf{right-polarized light}.
+
+\end{document}

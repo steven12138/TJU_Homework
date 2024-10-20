@@ -1,0 +1,101 @@
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath} % For math equations
+\usepackage{amssymb} % For math symbols
+\usepackage{geometry} % For page layout
+\usepackage{fancyhdr} % For headers and footers
+\usepackage{lipsum} % For dummy text (remove this line)
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array} % 导入 array 宏包
+\usepackage{verbatim} % 导入 verbatim 宏包
+\usepackage{calc}
+\usepackage{slashbox}
+\usepackage{pict2e}
+
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+\title{Digital System Assignment 2}
+\author{He Tianyang}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+%1、用代数法化简逻辑函数
+\textbf{Use algebraic method to simplify the logic function}
+\begin{equation}
+    Y = (\overline{A\overline{B}+\overline{A}B}\cdot C+A\overline{B}C)(AD+BC)
+\end{equation}
+\\
+\textbf{Solves:}
+\begin{align*}
+    Y  = & (\overline{A\overline{B}+\overline{A}B}\cdot C+A\overline{B}C)(AD+BC) \\
+    =    & ((AB+\overline{A}\cdot\overline{B})\cdot C+A\overline{B}C)(AD+BC)     \\
+    =    & (ABC+\overline{A}\cdot\overline{B}C)(AD+BC)                           \\
+    =    & ABCD+\overline{B}CD+ABC+\overline{A}C                                 \\
+    =    & C(ABD+\overline{B}D+AB+\overline{A})                                  \\
+    =    & C(AB+\overline{A}+\overline{B}D)                                      \\
+    =    & \boxed{AC(B+D)}
+\end{align*}
+
+\section*{Problem 2}
+%2. 化简逻辑函数Y(A,B,C,D) = \sigma m(3,4,5,7,8,9,10,11),约束条件： m0+m1+m2+m13+m14+m15=0
+\textbf{Simplify the logic function}
+\begin{equation}
+    Y(A,B,C,D) = \sum m(3,4,5,7,8,9,10,11)
+\end{equation}
+\textbf{Constraint:}
+\begin{equation}
+    m_0+m_1+m_2+m_{13}+m_{14}+m_{15}=0
+\end{equation}
+\textbf{Solves:}
+Solving this by drawing the Karnaugh map, we get:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \backslashbox{AB}{CD} & 00       & 01       & 11       & 10       \\ \hline
+        00                    & $\times$ & $\times$ & 1        & $\times$ \\ \hline
+        01                    & 1        & 1        & 1        &          \\ \hline
+        11                    &          & $\times$ & $\times$ & $\times$ \\ \hline
+        10                    & 1        & 1        & 1        & 1        \\ \hline
+    \end{tabular}
+\end{table}
+So we get:
+\begin{equation}
+    Y = A\overline{B}+\overline{A}\ \overline{C}+\overline{A}CD
+\end{equation}
+
+\section*{Problem 3}
+% 3、求解函数 Y
+% Y = ( A ~C + A~B C + ~A BC ) ⊕ ( AB ~C + A~B C + ~ABC + ~A ~B ~C )
+
+\textbf{Solve the function Y}
+\begin{equation}
+    Y = ( A \overline{C} + A\overline{B}C + \overline{A}BC ) \oplus ( AB\overline{C} + A\overline{B}C + \overline{A}\overline{B}\overline{C} )
+\end{equation}
+\textbf{Solves:}
+drawing the Karnaugh map, we get:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \backslashbox{A}{BC} & 00 & 01 & 11 & 10 \\ \hline
+        0                    & 1  &    &    &    \\ \hline
+        1                    &    & 1  &    &    \\ \hline
+    \end{tabular}
+\end{table}
+So we get:
+\begin{equation*}
+    \boxed{Y  = A\overline{B}C+\overline{A}BC}
+\end{equation*}
+\end{document}

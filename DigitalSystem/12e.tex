@@ -1,0 +1,233 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\section*{Q1}
+
+Given:
+\begin{itemize}
+    \item Distance between slits ($d$) = 0.8 mm = \(0.8 \times 10^{-3}\) m
+    \item Distance to screen ($L$) = 1.6 m
+    \item Distance between the second-order maxima ($\Delta y$) = 5 mm = \(5 \times 10^{-3}\) m
+\end{itemize}
+
+The distance between two second-order maxima is given by:
+\[
+\Delta y = 2 \cdot y_m = 2 \cdot \frac{m \lambda L}{d}
+\]
+
+where \(m\) is the order of the maximum (for second-order maxima, \(m = 2\)), \(\lambda\) is the wavelength, \(L\) is the distance to the screen, and \(d\) is the distance between the slits.
+
+Rearranging for \(\lambda\):
+\[
+\Delta y = 2 \cdot \frac{2 \lambda L}{d} \implies \lambda = \frac{\Delta y \cdot d}{4L}
+\]
+
+Substituting the given values:
+\[
+\lambda = \frac{(5 \times 10^{-3} \, \text{m}) \cdot (0.8 \times 10^{-3} \, \text{m})}{4 \cdot 1.6 \, \text{m}}
+\]
+
+\[
+\lambda = \frac{4 \times 10^{-6} \, \text{m}^2}{6.4 \, \text{m}} = 6.25 \times 10^{-7} \, \text{m}
+\]
+
+Therefore, the wavelength of the light is:
+\[
+\lambda = 625 \, \text{nm}
+\]
+
+\section*{Q2}
+
+Given:
+\begin{itemize}
+    \item Wavelength of laser light ($\lambda$) = 600 nm = \(600 \times 10^{-9}\) m
+    \item Distance between slits ($d$) = 1 cm = \(1 \times 10^{-2}\) m
+    \item Order of the maximum ($m$) = 3
+    \item Distance to the screen ($L$) = 5 m
+\end{itemize}
+
+\subsection*{(a) Angle of the 3rd Order Maximum}
+
+The angle for the \(m\)-th order maximum is given by the diffraction equation:
+\[
+d \sin \theta_m = m \lambda
+\]
+
+For the 3rd order maximum (\(m = 3\)):
+\[
+\sin \theta_3 = \frac{3 \lambda}{d}
+\]
+
+Substituting the given values:
+\[
+\sin \theta_3 = \frac{3 \times 600 \times 10^{-9} \, \text{m}}{1 \times 10^{-2} \, \text{m}}
+\]
+
+\[
+\sin \theta_3 = 1.8 \times 10^{-4}
+\]
+
+\[
+\theta_3 = \arcsin(1.8 \times 10^{-4}) \approx 0.0103^\circ
+\]
+
+\subsection*{(b) Distance between the 0th Order and 3rd Order Maximum on the Screen}
+
+The position \(y_m\) of the \(m\)-th order maximum on the screen is given by:
+\[
+y_m = L \tan \theta_m
+\]
+
+For small angles, \(\tan \theta_m \approx \sin \theta_m\), so:
+\[
+y_3 = L \sin \theta_3
+\]
+
+Substituting the values:
+\[
+y_3 = 5 \, \text{m} \times 1.8 \times 10^{-4}
+\]
+
+\[
+y_3 = 0.9 \, \text{mm}
+\]
+
+Therefore, the distance between the 0th order and the 3rd order maximum is:
+\[
+y_3 = 0.9 \, \text{mm}
+\]
+
+
+\section*{Q3}
+
+Given:
+\begin{itemize}
+    \item Wavelength of green light ($\lambda$) = 525 nm = \(525 \times 10^{-9}\) m
+\end{itemize}
+
+For destructive interference, the path difference should be:
+\[
+\Delta = (m + 0.5) \lambda
+\]
+where \(m\) is the order of the interference (for minimum thickness, \(m = 0\)).
+
+In a thin film, the path difference is:
+\[
+\Delta = 2 t n
+\]
+where \(t\) is the thickness of the film and \(n\) is the refractive index of the film.
+
+For destructive interference, we set the path difference to:
+\[
+2 t n = (0.5) \lambda
+\]
+
+Solving for the minimum thickness \(t\):
+\[
+t = \frac{0.5 \lambda}{2 n} = \frac{\lambda}{4 n}
+\]
+
+Assuming the refractive index \(n\) cancels out for minimum thickness:
+\[
+t = \frac{0.5 \lambda}{2}
+\]
+
+Substituting the given wavelength:
+\[
+t = \frac{0.5 \times 525 \times 10^{-9} \, \text{m}}{2}
+\]
+
+\[
+t = 131.25 \times 10^{-9} \, \text{m} = 131.25 \, \text{nm}
+\]
+
+Therefore, the minimum thickness of oil that will produce destructive interference in green light is:
+\[
+t = 131.25 \, \text{nm}
+\]
+
+\section*{Q4}
+
+Given:
+\begin{itemize}
+    \item Mirror displacement ($d$) = 0.382 mm = \(0.382 \times 10^{-3}\) m
+    \item Number of fringes ($N$) = 1700
+\end{itemize}
+
+Each time the pattern reproduces itself corresponds to a full round trip for the light. Therefore, one fringe corresponds to a displacement of one wavelength. Since the light travels to the mirror and back, the total path length is doubled:
+\[
+\Delta x = 2d
+\]
+
+The total path difference for 1700 fringes is:
+\[
+N \lambda = 2d
+\]
+
+Solving for the wavelength (\(\lambda\)):
+\[
+\lambda = \frac{2d}{N}
+\]
+
+Substituting the given values:
+\[
+\lambda = \frac{2 \times 0.382 \times 10^{-3} \, \text{m}}{1700}
+\]
+
+\[
+\lambda = \frac{0.764 \times 10^{-3}}{1700}
+\]
+
+\[
+\lambda = 4.494 \times 10^{-7} \, \text{m} = 449.4 \, \text{nm}
+\]
+
+Therefore, the wavelength of the light is:
+\[
+\lambda = 449.4 \, \text{nm}
+\]
+
+The color corresponding to this wavelength is violet.
+
+\section*{Q5}
+
+Given two waves represented by cosine functions:
+\[
+y_1 = A \cos(\omega t + \phi_1)
+\]
+\[
+y_2 = A \cos(\omega t + \phi_2)
+\]
+
+\subsection*{Resultant Wave}
+
+The resultant wave is the sum of the two waves:
+\[
+y_{\text{resultant}} = y_1 + y_2
+\]
+
+Substituting the given functions:
+\[
+y_{\text{resultant}} = A \cos(\omega t + \phi_1) + A \cos(\omega t + \phi_2)
+\]
+
+Using trigonometric identities, we can simplify the resultant wave:
+\[
+y_{\text{resultant}} = A (\cos(\omega t + \phi_1) + \cos(\omega t + \phi_2))
+\]
+
+\subsection*{Magnitude of the New Amplitude}
+
+The magnitude of the new amplitude can be found by using the trigonometric identity for the sum of cosines:
+\[
+A_{\text{new}} = A \left( \cos(\phi_1 - \phi_2) + 1 \right)
+\]
+
+Thus, the magnitude of the new amplitude is:
+\[
+A_{\text{new}} = A \left( \cos(\phi_1 - \phi_2) + 1 \right)
+\]
+
+\end{document}

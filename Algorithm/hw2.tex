@@ -1,0 +1,200 @@
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath} % For math equations
+\usepackage{amssymb} % For math symbols
+\usepackage{geometry} % For page layout
+\usepackage{fancyhdr} % For headers and footers
+\usepackage{lipsum} % For dummy text (remove this line)
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array} % 导入 array 宏包
+\usepackage{verbatim} % 导入 verbatim 宏包
+\usepackage{calc}
+\usepackage{tikz-qtree}
+\usepackage{tikz}
+\usepackage{forest}
+
+\usetikzlibrary{positioning}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+\title{Algorithm Assignment 2}
+\author{He Tianyang}
+\date{\today}
+
+
+
+\begin{document}
+\maketitle
+
+\section{Problem 1.}
+% 归纳法(代入法)证明 Tn<=0,n=1|t[n/2]+t[n/2]+cn,n>1 <=cn[log_2n]
+Use induction (substitution) to prove:
+\begin{align}
+    T(n) & = \begin{cases}
+                 0,                                    & n = 1 \\
+                 T(\frac{n}{2}) + T(\frac{n}{2}) + cn, & n > 1
+             \end{cases} \\
+         & \leq cn\log_2n
+\end{align}
+
+\textbf{Base case:} When $n = 1$,exist $c$ greater enough that satisfy $T(1) = 0 \leq c \cdot 1 \cdot \log_2 1$. The base case holds.
+
+\textbf{Inductive step:} Assume that $T(k) \leq ck\log_2k$ for all $k < n$. We want to show that $T(n) \leq cn\log_2n$.
+
+\begin{align*}
+    T(n) & = T\left(\frac{n}{2}\right) + T\left(\frac{n}{2}\right) + c_2n              \\
+         & \leq c_1\frac{n}{2}\log_2\frac{n}{2} + c_1\frac{n}{2}\log_2\frac{n}{2} + cn \\
+         & = c_1n\log_2\frac{n}{2} + c_2n                                              \\
+         & \leq c_1n\log_2n + c_2n                                                     \\
+         & = O(n\log_2n)
+\end{align*}
+
+Therefore, by induction, $T(n) \leq cn\log_2n$ for all $n \geq 1$.
+
+\section{Problem 2.}
+
+Use the master theorem to solve the following recurrence relation:
+\begin{equation}
+    T(n) = 2T\left(\frac{n}{2}\right) + \Theta(n^{\frac{1}{2}})
+\end{equation}
+
+\textbf{Solution:}
+
+The recurrence relation is of the form $T(n) = aT\left(\frac{n}{b}\right) + f(n)$, where $a = 2$, $b = 2$, and $f(n) = \Theta(n^{\frac{1}{2}})$. We can compare $f(n)$ with $n^{\log_ba}$ to determine which case of the master theorem applies.
+
+In this case, $n^{\log_ba} = n^{\log_22} = n$. Since $f(n) = \Theta(n^{\frac{1}{2}})$, we have $f(n) = O(n^{1 - \epsilon})$ for $\epsilon = \frac{1}{2}$. Therefore, we are in case 1 of the master theorem, and the solution to the recurrence relation is:
+\begin{equation*}
+    \boxed{T(n) = n^{\log_ba} = n^{\log_22} = \Theta(n)}
+\end{equation*}
+
+\section{Problem 3.}
+
+Expand the recurrence tree for the following recurrence relation,
+and apply asymptotic analysis to determine the complexity of the recurrence relation.
+\begin{equation}
+    T(n) = T(2) + T(n - 2) + cn
+\end{equation}
+
+\textbf{Solution:}
+
+The recurrence relation is of the form $T(n) = T(2) + T(n - 2) + cn$. We can expand the recurrence tree to visualize the recursive calls.
+\begin{figure}[H]
+    \centering
+    \begin{forest}
+        [T(n)
+        [T(2)]
+        [T(n-2)+cn
+        [T(2)]
+        [T(n-4)+c(n-2)
+        [T(2)]
+            [T(n-6)+c(n-4)
+                [
+                        T(2)
+                    ]
+                    [$\vdots$
+                        [T(2)]
+                            [T(2)+c4]
+                    ]
+            ]
+        ]
+        ]
+        ]
+    \end{forest}
+    \label{fig:recurrence-tree}
+    \caption{Recurrence tree for $T(n) = T(2) + T(n - 2) + cn$}
+\end{figure}
+
+Donated $h$ as the depth of the tree, the cost of each level is $cn$, where we have:
+$$
+    h=\frac{n}{2}
+$$
+
+The total cost of the tree is:
+$$
+    T(n)=hT(2)+\sum_{i=0}^{h-1}2c(i+1) = \frac{n}{2}\cdot T(2)+\frac{cn^2+4cn}{4} = \frac{n}{2}\cdot T(2)+\frac{c}{4}\cdot n^2+cn
+$$
+
+Compare the complexity of $\frac{n}{2}\cdot T(2)$ with $\frac{c}{4}\cdot n^2+cn$, we have:
+\begin{equation*}
+    T(n)  = \begin{cases}
+        \Theta(nT(2)), & \text{if } T(2) = \Omega(n) \\
+        \Theta(n^2),   & \text{if } T(2) = O(n)
+    \end{cases}
+\end{equation*}
+
+\section{Problem 4.}
+% 展开 T(n)=T(0.2n)+T(0.8n)+\Theta(n) 计算深度和渐进复杂度
+
+Expand the recurrence tree for the following recurrence relation. Calculate the depth and the asymptotic complexity of the recurrence relation.
+\begin{equation}
+    T(n) = T(0.2n) + T(0.8n) + \Theta(n)
+\end{equation}
+
+\textbf{Solves:}
+
+The recurrence relation is of the form $T(n) = T(0.2n) + T(0.8n) + \Theta(n)$. We can expand the recurrence tree to visualize the recursive calls.
+
+Each $k$, $T(k) = T(0.2k) + T(0.8k) + \Theta(k)$, $T(0.8)$ is the larger part, and get the slowest asymptotic speed. Therefore, the depth of the recursive tree is $\log_{0.8}n$.
+
+For the layer in depth $k$, the cost is $\Theta(n)$, and the total cost of the tree is:
+\begin{equation*}
+    T(n) = \sum_{i=0}^{\log_{0.8}n-1}2^i\Theta(n) = \Theta(n\log_{0.8}n)
+\end{equation*}
+
+Therefore, the asymptotic complexity of the recurrence relation is $\boxed{\Theta(n\log_{0.8}n)}$.
+
+\section{Problem 5.}
+Calculate the time complexity of algorithm A which is defined by the following recurrence relation:
+\begin{equation}
+    \begin{cases}
+        f(n) = 2f(n-1)+1 \\
+        f(0) = 1
+    \end{cases}
+\end{equation}
+
+\textbf{Solves:}
+Obviously, we have
+\begin{align*}
+    f(n) & = 2f(n-1)+1 \\
+         & = 2(2f(n-2)+1)+1 \\
+         & = 2^2f(n-2)+2+1 \\
+         & = 2^3f(n-3)+2^2+2+1 \\
+         & = \ldots \\
+         & = 2^nf(0)+2^{n-1}+2^{n-2}+\cdots+2+1 \\
+         & = 2^n+2^{n-1}+2^{n-2}+\cdots+2+1 \\
+         & = 2^{n+1}-1
+\end{align*}
+
+Therefore, the time complexity of algorithm A is $\boxed{\Theta(2^n)}$.
+
+\end{document}

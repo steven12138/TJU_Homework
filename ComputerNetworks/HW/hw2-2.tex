@@ -1,0 +1,114 @@
+\documentclass{cshwk}
+
+\begin{document}
+
+\title{HW \#2, Chapter 2}
+
+\maketitle
+
+\section*{Problem 2. Chapter 2 P8.}
+Referring to Problem P7, suppose the HTML file references eight very small objects on the same server. Neglecting transmission times, how much time elapses with
+\begin{itemize}
+    \item[a.] Non-persistent HTTP with no parallel TCP connections?
+    \item[b.] Non-persistent HTTP with the browser configured for 6 parallel connections?
+    \item[c.] Persistent HTTP?
+\end{itemize}
+
+\subsection*{Solution}
+
+    \subsubsection*{a. Non-persistent HTTP with no parallel TCP connections}
+
+    For non-persistent HTTP without parallel connections, each object (including the initial HTML file and the eight small objects) requires a separate TCP connection established sequentially.
+
+    \begin{enumerate}
+        \item \textbf{Initial HTML file:}
+        \begin{itemize}
+            \item \textbf{1 RTT} for the TCP connection establishment (three-way handshake).
+            \item \textbf{1 RTT} for the HTTP request and the reception of the HTML file.
+        \end{itemize}
+        Total time for initial HTML file: \( 1 \text{ RTT} + 1 \text{ RTT} = 2 \text{ RTTs} \).
+        
+        \item \textbf{Eight small objects:}
+        \begin{itemize}
+            \item For each object:
+                \begin{itemize}
+                    \item \textbf{1 RTT} for the TCP connection establishment.
+                    \item \textbf{1 RTT} for the HTTP request and response.
+                \end{itemize}
+            \item Time per object: \( 1 \text{ RTT} + 1 \text{ RTT} = 2 \text{ RTTs} \).
+            \item Total time for eight objects: \( 8 \times 2 \text{ RTTs} = 16 \text{ RTTs} \).
+        \end{itemize}
+    \end{enumerate}
+
+    \noindent \textbf{Total elapsed time:}
+    \[
+    \text{Total time} = 2 \text{ RTTs (initial file)} + 16 \text{ RTTs (objects)} = \boxed{18 \text{ RTTs}}
+    \]
+
+    \subsubsection*{b. Non-persistent HTTP with the browser configured for 6 parallel connections}
+
+    With 6 parallel connections, the browser can fetch up to 6 objects simultaneously.
+
+    \begin{enumerate}
+        \item \textbf{Initial HTML file:}
+        \begin{itemize}
+            \item Same as before: \( 1 \text{ RTT (connection)} + 1 \text{ RTT (request/response)} = 2 \text{ RTTs} \).
+        \end{itemize}
+        
+        \item \textbf{First batch of objects (6 objects):}
+        \begin{itemize}
+            \item \textbf{1 RTT} for TCP connection establishments (simultaneously for all 6 connections).
+            \item \textbf{1 RTT} for HTTP requests and responses (also simultaneous).
+            \item Total time for first batch: \( 1 \text{ RTT} + 1 \text{ RTT} = 2 \text{ RTTs} \).
+        \end{itemize}
+        
+        \item \textbf{Second batch of objects (2 objects):}
+        \begin{itemize}
+            \item After the first batch completes, the browser uses available connections to fetch the remaining 2 objects.
+            \item \textbf{1 RTT} for TCP connection establishments.
+            \item \textbf{1 RTT} for HTTP requests and responses.
+            \item Total time for second batch: \( 1 \text{ RTT} + 1 \text{ RTT} = 2 \text{ RTTs} \).
+        \end{itemize}
+    \end{enumerate}
+
+    \noindent \textbf{Total elapsed time:}
+    \[
+    \text{Total time} = 2 \text{ RTTs (initial file)} + 2 \text{ RTTs (first batch)} + 2 \text{ RTTs (second batch)} = \boxed{6 \text{ RTTs}}
+    \]
+
+    \subsubsection*{c. Persistent HTTP}
+
+    With persistent HTTP, a single TCP connection is used to transfer the initial HTML file and all subsequent objects.
+
+    \begin{enumerate}
+        \item \textbf{TCP Connection Establishment:}
+        \begin{itemize}
+            \item \textbf{1 RTT} for the initial TCP connection establishment.
+        \end{itemize}
+        
+        \item \textbf{Initial HTML file:}
+        \begin{itemize}
+            \item \textbf{1 RTT} for the HTTP request and response.
+        \end{itemize}
+        Total time for initial HTML file: \( 1 \text{ RTT (connection)} + 1 \text{ RTT (request/response)} = 2 \text{ RTTs} \).
+        
+        \item \textbf{Eight small objects:}
+        \begin{itemize}
+            \item Since the connection is persistent, no additional RTTs are needed for connection establishments.
+            \item Without pipelining (requests are sent one after another):
+                \begin{itemize}
+                    \item Each object requires \textbf{1 RTT} for its HTTP request and response.
+                    \item Total time for eight objects: \( 8 \times 1 \text{ RTT} = 8 \text{ RTTs} \).
+                \end{itemize}
+        \end{itemize}
+    \end{enumerate}
+
+    \noindent \textbf{Total elapsed time:}
+    \[
+    \text{Total time} = 2 \text{ RTTs (initial file)} + 8 \text{ RTTs (objects)} = \boxed{10 \text{ RTTs}}
+    \]
+
+    \noindent \textbf{Note:} If HTTP pipelining were used (allowing multiple requests to be sent without waiting for responses), the eight objects could be requested back-to-back, potentially reducing the time further. However, since pipelining is not specified, we assume it is not used.
+
+
+\end{document}

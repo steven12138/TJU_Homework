@@ -1,0 +1,68 @@
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath} % For math equations
+\usepackage{amssymb} % For math symbols
+\usepackage{geometry} % For page layout
+\usepackage{fancyhdr} % For headers and footers
+\usepackage{lipsum} % For dummy text (remove this line)
+\usepackage{float}
+
+
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+\title{Digital System Assignment 1}
+\author{He Tianyang}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+\textbf{Convert the complement and reverse code into signed decimal numbers.}\\
+\\
+\textbf{Solves:}
+
+\begin{enumerate}
+    \item $(01001001)_{reverse} = (00110110)_2 =2^5+2^4+2^2+2=\boxed{+54} $
+    \item $(11100101)_{complement} = (11100101)_{reverse} = -(00011010)_2 = -(2^4+2^3+2)=\boxed{-26}$
+\end{enumerate}
+
+\section*{Problem 2}
+
+\textbf{There are three temperature detectors. When the detected temperature exceeds 60°C, the output control signal is 1; if the detected temperature is below 60°C, the output control signal is 0. When two or more temperature detectors output 0, the main controller outputs a 1 signal to automatically control the regulating equipment to increase the temperature to above 60°C. Please write out the truth table and logical expression for the main controller.}\\
+\\
+\textbf{Solves:}\\
+\\
+Assume the three temperature detectors are $T_1$, $T_2$ and $T_3$, and the main controller is $Main$. The truth table is as follows:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $T_1$ & $T_2$ & $T_3$ & $Main$ \\ \hline
+        0     & 0     & 0     & 1      \\ \hline
+        0     & 0     & 1     & 1      \\ \hline
+        0     & 1     & 0     & 1      \\ \hline
+        0     & 1     & 1     & 0      \\ \hline
+        1     & 0     & 0     & 1      \\ \hline
+        1     & 0     & 1     & 0      \\ \hline
+        1     & 1     & 0     & 0      \\ \hline
+        1     & 1     & 1     & 0      \\ \hline
+    \end{tabular}
+\end{table}
+Therefore, the logical expression for the main controller is:
+\begin{align}
+    Main & = \overline{T_1} \cdot \overline{T_2} \cdot \overline{T_3} + \overline{T_1} \cdot \overline{T_2} \cdot T_3 + \overline{T_1} \cdot T_2 \cdot \overline{T_3} + T_1 \cdot \overline{T_2} \cdot \overline{T_3} \\
+         & = \sum m(0,1,2,4)
+\end{align}
+or
+\begin{align}
+    Main & = (T_1 + T_2 + T_3)\cdot (T_1 + T_2 + \overline{T_3})\cdot (T_1 + \overline{T_2} + T_3)\cdot (\overline{T_1} + T_2 + T_3) \\
+         & = \prod M(3,5,6,7)
+\end{align}
+
+\end{document}

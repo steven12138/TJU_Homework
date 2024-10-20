@@ -1,0 +1,163 @@
+\documentclass{article}
+\usepackage{amsmath}
+\begin{document}
+
+\title{Optics Homework 13-E}
+\author{}
+\date{}
+\maketitle
+
+
+\section{Q1}
+To find the angular width of the central maximum, we use the single slit diffraction formula. The angular width of the central maximum is given by:
+\[
+\theta = \frac{\lambda}{a}
+\]
+
+Given:
+\[
+\lambda = 500 \times 10^{-9} \text{ m} \quad (\text{wavelength})
+\]
+\[
+a = 1.50 \times 10^{-6} \text{ m} \quad (\text{slit width})
+\]
+
+Substituting the values:
+\[
+\theta = \frac{500 \times 10^{-9}}{1.50 \times 10^{-6}} = \frac{500}{1500} \times 10^{-3} = 0.333 \text{ radians}
+\]
+
+Since the angular width of the central maximum is from \(-\theta\) to \(\theta\), the total angular width is \(2\theta\):
+\[
+\text{Total angular width} = 2 \theta = 2 \times 0.333 = 0.666 \text{ radians}
+\]
+
+Converting this to degrees:
+\[
+\theta_{\text{deg}} = \theta \times \frac{180}{\pi} = 0.333 \times \frac{180}{\pi} \approx 19.1^\circ
+\]
+
+The angular width of the central maximum is approximately \(0.666\) radians or \(38.2^\circ\).
+
+\section{Q2}
+To find the position of the first minima, we use the single slit diffraction formula. The position of the first minima on the observing screen is given by:
+\[
+y = \frac{m \lambda L}{a}
+\]
+where:
+\begin{itemize}
+    \item \( m = 1 \) for the first minima
+    \item \( \lambda = 580 \times 10^{-9} \text{ m} \) (wavelength)
+    \item \( a = 0.30 \times 10^{-3} \text{ m} \) (slit width)
+    \item \( L = 2.0 \text{ m} \) (distance to the screen)
+\end{itemize}
+
+Substituting the values:
+\[
+y = \frac{1 \times 580 \times 10^{-9} \times 2.0}{0.30 \times 10^{-3}} = \frac{580 \times 2.0}{0.30} \times 10^{-6} = \frac{1160}{0.30} \times 10^{-6} = 3866.67 \times 10^{-6} \text{ m}
+\]
+
+Converting this to millimeters:
+\[
+y = 3866.67 \times 10^{-6} \times 1000 = 3.87 \text{ mm}
+\]
+
+Therefore, the position of the first minima is approximately \(3.87 \text{ mm}\) from the center of the central maximum.
+
+
+\section{Q3}
+To determine which higher-order maxima are missing, we use the condition for missing maxima in a diffraction grating. The missing orders occur when the grating spacing \(d\) is an integer multiple of the slit width \(a\). This can be expressed as:
+\[
+m \lambda = a \sin \theta
+\]
+where:
+\begin{itemize}
+    \item \(m\) is the order of the maximum.
+    \item \(a = 0.15 \text{ mm}\) (slit width).
+    \item \(d = 0.6 \text{ mm}\) (slit spacing).
+\end{itemize}
+
+The missing orders occur when:
+\[
+\frac{d}{a} = \text{integer}
+\]
+
+Substituting the values:
+\[
+\frac{0.6 \text{ mm}}{0.15 \text{ mm}} = 4
+\]
+
+Therefore, the missing higher-order maxima are for the order:
+\[
+m = 4
+\]
+
+The higher-order maxima that are missing are the \(4\)th order maxima.
+
+\section{Q4}
+\subsection*{a) Separation between a set of slits}
+To find the separation between the slits, we use the formula for the position of dark fringes in a diffraction pattern:
+\[
+y = \frac{L \lambda}{d}
+\]
+where:
+\begin{itemize}
+    \item \( \lambda = 450 \times 10^{-9} \text{ m} \) (wavelength)
+    \item \( L = 1.80 \text{ m} \) (distance to the screen)
+    \item \( y = 4.20 \times 10^{-3} \text{ m} / 2 = 2.10 \times 10^{-3} \text{ m} \) (distance from central maximum to one dark fringe)
+\end{itemize}
+
+Rearranging to solve for \( d \):
+\[
+d = \frac{L \lambda}{y}
+\]
+Substituting the values:
+\[
+d = \frac{1.80 \times 450 \times 10^{-9}}{2.10 \times 10^{-3}} = 3.857 \times 10^{-4} \text{ m} = 0.000386 \text{ m}
+\]
+
+\subsection*{b) Number of lines per meter}
+The number of lines per meter \( N \) is the reciprocal of the slit separation \( d \):
+\[
+N = \frac{1}{d}
+\]
+Substituting the value of \( d \):
+\[
+N = \frac{1}{0.000386} \approx 2592.59 \text{ lines per meter}
+\]
+
+
+\section{Q5}
+To find the size of the details that can be resolved by the telescope, we use the Rayleigh criterion for the minimum resolvable detail:
+\[
+\theta = 1.22 \frac{\lambda}{D}
+\]
+where:
+\begin{itemize}
+    \item \( \lambda = 500 \times 10^{-9} \text{ m} \) (wavelength)
+    \item \( D = 7.6 \times 10^{-2} \text{ m} \) (aperture diameter)
+    \item \( L = 12.5 \times 10^{3} \text{ m} \) (distance to the target)
+\end{itemize}
+
+Substituting the values:
+\[
+\theta = 1.22 \frac{500 \times 10^{-9}}{7.6 \times 10^{-2}} = 8.026 \times 10^{-6} \text{ radians}
+\]
+
+The linear size of the resolvable detail is given by:
+\[
+s = \theta \times L
+\]
+Substituting the values:
+\[
+s = 8.026 \times 10^{-6} \times 12.5 \times 10^{3} = 0.1003 \text{ m}
+\]
+
+Converting this to millimeters:
+\[
+s = 0.1003 \times 1000 = 100.3 \text{ mm}
+\]
+
+
+\end{document}
+

@@ -1,0 +1,26 @@
+traceroute to illinois.edu (130.126.157.20), 30 hops max, 60 byte packets
+ 1  _gateway (192.168.1.1) [*]  1.877 ms  1.837 ms  0.986 ms
+ 2  221.221.144.1 (221.221.144.1) [AS4808]  4.245 ms * *
+ 3  221.223.117.245 (221.223.117.245) [AS4808]  4.434 ms * *
+ 4  * * *
+ 5  219.158.5.146 (219.158.5.146) [AS4837]  8.162 ms * *
+ 6  219.158.9.237 (219.158.9.237) [AS4837]  10.680 ms * *
+ 7  219.158.16.98 (219.158.16.98) [AS4837]  161.115 ms * *
+ 8  lax-b3-link.ip.twelve99.net (80.239.134.246) [AS1299]  213.843 ms * *
+ 9  lax-b22-link.ip.twelve99.net (62.115.126.248) [AS1299]  306.418 ms * *
+10  * * *
+11  * * *
+12  chi-bb1-link.ip.twelve99.net (62.115.113.75) [AS1299]  244.244 ms  244.664 ms  244.606 ms
+13  chi-b24-link.ip.twelve99.net (62.115.115.71) [AS1299]  215.731 ms  307.357 ms  307.278 ms
+14  wiscnet-ic-369229.ip.twelve99-cust.net (213.248.71.113) [AS1299]  307.207 ms  306.538 ms  306.493 ms
+15  t-ur1rtr.ix.ui-iccn.org (72.36.127.86) [AS40387/AS198949]  306.273 ms  306.220 ms  306.195 ms
+16  t-ur1rtr.ix.ui-iccn.org (72.36.127.86) [AS40387/AS198949]  306.171 ms 72.36.126.233 (72.36.126.233) [AS40387/AS198949]  306.347 ms t-ur1rtr.ix.ui-iccn.org (72.36.127.86) [AS40387/AS198949]  306.123 ms
+17  t-rtr-urbexit1.gw.uiuc.edu (130.126.0.201) [AS38/AS198949]  306.301 ms  306.279 ms t-rtr-urbexit1.gw.uiuc.edu (72.36.127.2) [AS40387/AS198949]  311.207 ms
+18  t-rtr-urbexit1.gw.uiuc.edu (130.126.0.201) [AS38/AS198949]  311.136 ms t-fw-urbexit.gw.uiuc.edu (130.126.0.142) [AS38/AS198949]  311.137 ms  311.104 ms
+19  t-rtr-urbexit1.gw.uiuc.edu (130.126.0.133) [AS38/AS198949]  307.664 ms  307.572 ms t-fw-urbexit.gw.uiuc.edu (130.126.0.142) [AS38/AS198949]  307.539 ms
+20  t-rtr-brdrdist2.gw.uiuc.edu (130.126.1.114) [AS38/AS198949]  307.465 ms t-rtr-urbexit1.gw.uiuc.edu (130.126.0.133) [AS38/AS198949]  307.452 ms  307.417 ms
+21  t-rtr-brdrdist9.gw.uiuc.edu (130.126.1.126) [AS38/AS198949]  307.302 ms * t-rtr-brdrdist2.gw.uiuc.edu (130.126.1.114) [AS38/AS198949]  307.297 ms
+22  * * *
+23  * * *
+24  * * *
+25  alma.techservices.illinois.edu (130.126.157.20) [AS38/AS198949]  226.336 ms * *

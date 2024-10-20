@@ -1,0 +1,284 @@
+\documentclass{article}
+\usepackage{amsmath}
+\addtolength{\topmargin}{-.5in}
+\begin{document}
+
+\title{Hw6, Algorithm}
+\author{}
+\date{}
+\maketitle
+
+\section{Q1. Knapsack Problem}
+
+Given:
+\begin{itemize}
+    \item Profits \( P = [6, 3, 5, 4, 6] \)
+    \item Weights \( w = [2, 2, 6, 5, 4] \)
+    \item Capacity \( c = 10 \)
+    \item Number of items \( n = 5 \)
+\end{itemize}
+
+\subsection*{Recursive Solution}
+The recursive solution for the knapsack problem can be defined as:
+
+\[
+    K(n, c) =
+    \begin{cases}
+        0                                            & \text{if } n = 0 \text{ or } c = 0 \\
+        K(n-1, c)                                    & \text{if } w[n-1] > c              \\
+        \max\{K(n-1, c), P[n-1] + K(n-1, c-w[n-1])\} & \text{if } w[n-1] \leq c
+    \end{cases}
+\]
+
+\subsubsection*{Base Case}
+For \( n = 0 \) or \( c = 0 \):
+\[
+    K(0, c) = 0, \quad \forall c
+\]
+
+\subsubsection*{Recursive Case}
+For \( n > 0 \) and \( c > 0 \):
+\begin{align*}
+    K(5, 10) & = \max\{K(4, 10), 6 + K(4, 6)\}                \\
+    K(4, 10) & = \max\{K(3, 10), 4 + K(3, 5)\}                \\
+    K(3, 10) & = K(2, 10) \quad (\text{since } w[2] = 6 > 10) \\
+    K(2, 10) & = \max\{K(1, 10), 3 + K(1, 8)\}                \\
+    K(1, 10) & = \max\{K(0, 10), 6 + K(0, 8)\} = 6            \\
+    K(1, 8)  & = 6                                            \\
+    K(2, 8)  & = \max\{K(1, 8), 3 + K(1, 6)\} = 9             \\
+    K(3, 5)  & = \max\{K(2, 5), 5 + K(2, 0)\} = 5             \\
+    K(2, 5)  & = \max\{K(1, 5), 3 + K(1, 3)\} = 6             \\
+    K(4, 6)  & = \max\{K(3, 6), 4 + K(3, 1)\}                 \\
+    K(3, 6)  & = \max\{K(2, 6), 5 + K(2, 0)\} = 9             \\
+    K(2, 6)  & = \max\{K(1, 6), 3 + K(1, 4)\} = 9             \\
+    K(4, 10) & = \max\{K(3, 10), 4 + 5\} = 10                 \\
+    K(5, 10) & = \max\{10, 6 + 9\} = 15
+\end{align*}
+
+\subsection*{Dynamic Programming Solution}
+\begin{align*}
+    \text{Let } DP[i][j]     & = \text{Maximum profit using the first } i \text{ items and capacity } j \\
+    DP[0][j]                 & = 0 \quad \forall j                                                      \\
+    DP[i][0]                 & = 0 \quad \forall i                                                      \\
+    \text{For } i = 1 \text{ to } n                                                                     \\
+    \text{For } j = 1 \text{ to } c                                                                     \\
+    \text{if } w[i-1] \leq j & \text{ then } DP[i][j] = \max(DP[i-1][j], P[i-1] + DP[i-1][j-w[i-1]])    \\
+    \text{else } DP[i][j]    & = DP[i-1][j]
+\end{align*}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|ccccccccccc}
+          & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8  & 9  & 10 \\
+        \hline
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  & 0  & 0  \\
+        1 & 0 & 0 & 6 & 6 & 6 & 6 & 6 & 6 & 6  & 6  & 6  \\
+        2 & 0 & 0 & 6 & 6 & 9 & 9 & 9 & 9 & 9  & 9  & 9  \\
+        3 & 0 & 0 & 6 & 6 & 9 & 9 & 9 & 9 & 9  & 9  & 11 \\
+        4 & 0 & 0 & 6 & 6 & 9 & 9 & 9 & 9 & 10 & 10 & 11 \\
+        5 & 0 & 0 & 6 & 6 & 9 & 9 & 9 & 9 & 10 & 10 & 15 \\
+    \end{tabular}
+    \caption{DP Table for Knapsack Problem}
+\end{table}
+
+Thus, the maximum profit for capacity 10 is \( 15 \).
+
+\section{Q2. 0/1 Knapsack Problem}
+
+Let \( g(i, x) \) denote the maximum benefit for items \( 1, \ldots, i \) with a knapsack capacity of \( x \).
+
+\subsection*{(1) Recurrence Relation}
+
+The dynamic programming recurrence relation for the 0/1 knapsack problem is:
+
+\[
+    g(i, x) =
+    \begin{cases}
+        0                                        & \text{if } i = 0 \text{ or } x = 0 \\
+        g(i-1, x)                                & \text{if } w_i > x                 \\
+        \max\{g(i-1, x), p_i + g(i-1, x - w_i)\} & \text{if } w_i \leq x
+    \end{cases}
+\]
+
+Where \( w_i \) is the weight and \( p_i \) is the profit of the \( i \)-th item.
+
+\subsection*{(2) Example Calculation}
+
+Given:
+\begin{itemize}
+    \item Number of items \( n = 4 \)
+    \item Capacity \( c = 20 \)
+    \item Weights \( w = [10, 15, 6, 9] \)
+    \item Profits \( p = [2, 5, 8, 1] \)
+\end{itemize}
+
+We need to compute the DP table and backtrack to find the optimal solution.
+
+\subsubsection*{DP Table}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cccccccccccccccccccccc}
+          & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\
+        \hline
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  \\
+        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 2  & 2  & 2  & 2  & 2  & 2  & 2  & 2  & 2  & 2  & 2  \\
+        2 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 2 & 2  & 2  & 2  & 2  & 5  & 5  & 5  & 5  & 5  & 7  & 7  \\
+        3 & 0 & 0 & 0 & 0 & 0 & 0 & 8 & 8 & 8 & 8 & 8  & 8  & 8  & 8  & 8  & 10 & 10 & 10 & 10 & 13 & 13 \\
+        4 & 0 & 0 & 0 & 0 & 0 & 0 & 8 & 8 & 8 & 8 & 8  & 8  & 8  & 8  & 8  & 10 & 10 & 10 & 10 & 13 & 13 \\
+    \end{tabular}
+    \caption{DP Table for the Given Example}
+\end{table}
+
+\subsubsection*{Backtracking to Find Optimal Items}
+
+To find the items that make up the optimal solution, we backtrack from \( g(4, 20) \).
+
+\begin{itemize}
+    \item Start at \( g(4, 20) = 13 \)
+    \item Since \( g(4, 20) = g(3, 20) \), item 4 is not included.
+    \item Move to \( g(3, 20) = 13 \)
+    \item Since \( g(3, 20) \neq g(2, 20) \), item 3 is included.
+    \item Now, \( x = 20 - w_3 = 20 - 6 = 14 \)
+    \item Move to \( g(2, 14) = 5 \)
+    \item Since \( g(2, 14) = g(1, 14) \), item 2 is not included.
+    \item Move to \( g(1, 14) = 2 \)
+    \item Since \( g(1, 14) \neq g(0, 14) \), item 1 is included.
+\end{itemize}
+
+Thus, the optimal set of items to include are item 1 and item 3.
+
+
+\section{Q3. Task Completion Problem}
+
+Given \( n \) tasks numbered from \( 1 \) to \( n \) in topological order, each task \( i \) has two ways to complete:
+\begin{itemize}
+    \item Method 1: Cost \( C_{i,1} \) and Time \( T_{i,1} \)
+    \item Method 2: Cost \( C_{i,2} \) and Time \( T_{i,2} \)
+\end{itemize}
+
+Define \( \text{cost}(i, j) \) as the minimum cost to complete tasks \( 1 \) to \( i \) within \( j \) time units.
+
+The recurrence relation is:
+
+\[
+    \text{cost}(i, j) =
+    \begin{cases}
+        0                                                                                        & \text{if } i = 0                       \\
+        \infty                                                                                   & \text{if } i > 0 \text{ and } j < 0    \\
+        \min\{\text{cost}(i-1, j - T_{i,1}) + C_{i,1}, \text{cost}(i-1, j - T_{i,2}) + C_{i,2}\} & \text{if } i > 0 \text{ and } j \geq 0
+    \end{cases}
+\]
+
+\subsection*{Base Cases}
+\[
+    \text{cost}(0, j) = 0 \quad \forall j \geq 0
+\]
+\[
+    \text{cost}(i, j) = \infty \quad \forall i > 0 \text{ and } j < 0
+\]
+
+\subsection*{Recursive Case}
+For \( i > 0 \text{ and } j \geq 0 \):
+\[
+    \text{cost}(i, j) = \min\{\text{cost}(i-1, j - T_{i,1}) + C_{i,1}, \text{cost}(i-1, j - T_{i,2}) + C_{i,2}\}
+\]
+
+This recurrence relation ensures that for each task \( i \), we consider both methods of completion and choose the one that minimizes the total cost while staying within the given time \( j \).
+
+\section{Q4. Maximum Subset Sum Problem}
+
+Given \( \sum_{i=1}^n s_i \geq c \), where \( \sum_{i \in J} s_i \leq c \) is an arbitrary positive integer, and \( J \) is a subset of \{1, 2, ..., n\}.
+
+\subsection*{(1) Recurrence Relation}
+
+Define \( \text{max\_sum}(i, j) \) as the maximum sum we can achieve using the first \( i \) elements without exceeding capacity \( j \).
+
+The recurrence relation is:
+\[
+    \text{max\_sum}(i, j) =
+    \begin{cases}
+        0                                                                    & \text{if } i = 0 \text{ or } j = 0 \\
+        \text{max\_sum}(i-1, j)                                              & \text{if } s_i > j                 \\
+        \max\{\text{max\_sum}(i-1, j), s_i + \text{max\_sum}(i-1, j - s_i)\} & \text{if } s_i \leq j
+    \end{cases}
+\]
+
+\subsection*{(2) Example to Illustrate the Algorithm}
+
+Consider \( n = 4 \), \( c = 10 \), and \( s = [2, 3, 4, 5] \).
+
+\subsubsection*{Step-by-Step Execution}
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|cccccccccccccccccccccc}
+          & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  & 10 \\
+        \hline
+        0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0  & 0  \\
+        1 & 0 & 0 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2  & 2  \\
+        2 & 0 & 0 & 2 & 3 & 3 & 5 & 5 & 5 & 5 & 5  & 5  \\
+        3 & 0 & 0 & 2 & 3 & 4 & 5 & 6 & 7 & 7 & 9  & 9  \\
+        4 & 0 & 0 & 2 & 3 & 4 & 5 & 6 & 7 & 9 & 10 & 12 \\
+    \end{tabular}
+    \caption{DP Table for Maximum Subset Sum Example}
+\end{table}
+
+To find the subset that achieves the maximum sum not exceeding \( c \), backtrack from \( \text{max\_sum}(4, 10) \):
+
+\begin{itemize}
+    \item Start at \( \text{max\_sum}(4, 10) = 12 \)
+    \item Since \( \text{max\_sum}(4, 10) \neq \text{max\_sum}(3, 10) \), item 4 is included.
+    \item Now, \( j = 10 - s_4 = 10 - 5 = 5 \)
+    \item Move to \( \text{max\_sum}(3, 5) = 5 \)
+    \item Since \( \text{max\_sum}(3, 5) \neq \text{max\_sum}(2, 5) \), item 3 is included.
+    \item Now, \( j = 5 - s_3 = 5 - 4 = 1 \)
+    \item Move to \( \text{max\_sum}(2, 1) = 0 \), so no more items are included.
+\end{itemize}
+
+Thus, the optimal subset includes items 3 and 4, achieving the sum 9.
+
+
+\begin{center}
+    \begin{minipage}{0.48\textwidth}
+        \vspace{-0.2cm}
+        \centering
+        \setlength\tabcolsep{0.043cm}%调列距
+        \caption{\label{tab:cam}
+            Classification error rate(\%) for ImageNet-to-ImageNet-C online CTTA task. Gain(\%) represents the percentage of improvement in model accuracy compared with the source method.}
+        % \vspace{-0.3cm}
+        \small
+        % \setlength\tabcolsep{1pt}
+        % \begin{adjustbox}{width=1\linewidth,center=\linewidth}
+        \begin{figure*}[t]
+            \centering
+            \includegraphics[width=1\columnwidth]{Styles/figure/cam.pdf}
+            \caption{}
+            \label{fig:overview}
+        \end{figure*}
+        % \end{adjustbox}
+        % \vspace{-0.2cm}
+    \end{minipage}
+    \hspace{0.02\textwidth}
+    \begin{minipage}{0.48\textwidth}
+        \vspace{-0.3cm}
+        \centering
+        \setlength\tabcolsep{0.1cm}%调列距
+        \caption{\label{tab:tSNE}
+            Average mIoU(\%) for the Citiscapes-to-ACDC. DI-A and DS-A represent the Domain-Invariant Adapter and the Domain-Specific Adapters. GNS means the Gradient Non-conflict Solver.}
+        \small
+        % \vspace{-0.3cm}
+        % \setlength\tabcolsep{1pt}
+        % \begin{adjustbox}{width=1\linewidth,center=\linewidth}
+        \begin{figure*}[t]
+            \centering
+            \includegraphics[width=1\columnwidth]{Styles/figure/tsne.pdf}
+            \caption{}
+            \label{fig:overview}
+        \end{figure*}
+    \end{minipage}
+\end{center}
+
+
+
+\end{document}

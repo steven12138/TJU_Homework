@@ -1,0 +1,695 @@
+\documentclass{article}
+
+% Packages
+\usepackage{amsmath} % For math equations
+\usepackage{amssymb} % For math symbols
+\usepackage{geometry} % For page layout
+\usepackage{fancyhdr} % For headers and footers
+\usepackage{lipsum} % For dummy text (remove this line)
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{array} % 导入 array 宏包
+\usepackage{verbatim} % 导入 verbatim 宏包
+\usepackage{calc}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+\title{Algorithm Assignment 1}
+\author{He Tianyang}
+\date{\today}
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+% \textbf{Q15.  试确定函数Mult(见程序2-24)共执行了多少次乘法,该函数实现两个n×n矩阵的乘法。}
+\textbf{Q15.}  Determine how many times the function Mult (see program 2-24) has executed multiplication, which implements the multiplication of two n×n matrices.
+\\
+
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    void Mult(T **a, T **b, T **c, int n)
+    {
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+            {
+                T sum = 0;
+                for (int k = 0; k < n; k++)
+                    sum += a[i][k] * b[k][j];
+                c[i][j] = sum;
+            }
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-24, Multiplication of two n×n matrices
+\end{center}
+
+\textbf{Answer:} Inside the K-loop, there are n multiplications. The k-loop is executed n times. J-loop is executed n times. I-loop is executed n times. So the total number of multiplications is $\mathbf{n^3}$.
+
+\section{Problem 2}
+
+%试确定函数Mult (见程序2-25) 共执行了多少次乘法,该函数实现一个 m×n矩阵与一个
+%n×p 矩阵之间的乘法。
+\textbf{Q16.}
+Determine how many times the function Mult (see program 2-25) has executed multiplication, which implements the multiplication between an m×n matrix and an n×p matrix.
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    void Mult(T **a, T **b, T **c, int m, int n, int p)
+    {
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < p; j++)
+            {
+                T sum = 0;
+                for (int k = 0; k < n; k++)
+                    sum += a[i][k] * b[k][j];
+                c[i][j] = sum;
+            }
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-25, Multiplication between an m×n matrix and an n×p matrix
+\end{center}
+
+\textbf{Answer:} Inside the K-loop, there are n multiplications. The k-loop is executed n times. J-loop is executed p times. I-loop is executed m times. So the total number of multiplications is $\mathbf{m\times n\times p}$.
+
+\section{Problem 3}
+%函数Min Max(见程序2-26) 用来查找数组 a[0:n-1] 中的最大元素和最小元素。令 n为实
+% 例特征。试问a 中元素之间的比较次数是多少?程序 2- 27中给出了另一个查找最大和最小元素
+% 的函数。在最好和最坏情况下 a 中元素之间比较次数分别是多少?试分析两个函数之间的相对
+% 性能。
+
+\textbf{Q17.}
+The function Min Max (see program 2-26) is used to find the maximum and minimum elements in the array a[0:n-1]. Let n be the instance characteristic. How many comparisons are there between the elements in a? Another function that finds the maximum and minimum elements is given in program 2-27. In the best and worst cases, how many comparisons are there between the elements in a? Analyze the relative performance between the two functions.
+
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    bool MinMax(T a[], int n, T &min, T &max)
+    {
+        if (n < 1) return false;
+        min = max = a[0];
+        for (int i = 1; i < n; i++)
+        {
+            if (a[i] < min) min = a[i];
+            if (a[i] > max) max = a[i];
+        }
+        return true;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-26, Finding the maximum and minimum elements
+\end{center}
+
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    bool MinMax(T a[], int n, T &min, T &max)
+    {
+        if (n < 1) return false;
+        min = max = 0;
+        for (int i = 1; i < n; i++)
+        {
+            if (a[min]>a[i]) min = i;
+            else if (a[max]<a[i]) max = i;
+        }
+        return true;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-27, Alternative program to find the maximum and minimum elements
+\end{center}
+
+\textbf{Answer:}
+\begin{enumerate}
+    \item In program 2-26, in single loop, there are 2 comparisons between the element in a. The loop is executed n-1 times. So the total number of comparisons is $\mathbf{2\times (n-1)}$.
+    \item In program 2-27
+          \begin{enumerate}
+              \item For the best cases, the sequence is sorted in desand order. The first element is the maximum and the last element is the minimum. each element is compared once. So the total number of comparisons is $\mathbf{n-1}$.
+              \item For the worst cases, the sequence is sorted in ascending order. The last element is the maximum and the first element is the minimum. each element is compared twice. So the total number of comparisons is $\mathbf{2\times (n-1)}$.
+          \end{enumerate}
+    \item Relative performance: the performance of the two functions is the same in the best cases. In the worst cases, the performance of program 2-27 is better as the performance of program 2-26. Therefore, \textbf{the performance of program 2-27 is better than the performance of program 2-26}.
+\end{enumerate}
+
+\section{Problem 4}
+% 20. 程序2 -2 8给出了另外一个迭代式顺序搜索函数。在最坏情况下 x 与a中元素之间执行了
+% 多少次比较?把这个比较次数与程序 2 - 1中相应的比较次数进行比较,哪一个函数将运行得更
+% 快?为什么?
+\textbf{Q20.}
+Program 2-28 gives another iterative sequential search function. In the worst case, how many comparisons are there between x and the elements in a? Compare the number of comparisons with the corresponding number of comparisons in program 2-1, which function will run faster? Why?
+
+% 程序2-28 另一个顺序搜索函数
+% template<class T>
+% int SequentialSearch(T a[ ], const T& x, int n)
+% {// 在未排序的数组 a[0 : n-1]中查找 x
+% // 如果找到,则返回相应位置,否则返回- 1
+% a[n] = x; // 假定该位置有效
+% int i;
+% for (i = 0; a[i] != x; i++);
+% if (i == n) return -1;
+% return i;
+% }
+% template<class T>
+% int SequentialSearch(T a[], const T& x, int n)
+% {// 在未排序的数组 a [ 0:n-1 ]中搜索 x
+% // 如果找到,则返回所在位置,否则返回- 1
+% int i;
+% for (i = 0; i < n && a[i] != x; i++);
+% if (i == n) return -1;
+% return i;
+% }
+% 2-1
+\begin{lstlisting}[language=C++]
+    template <class T>
+    int SequentialSearch(T a[], const T &x, int n)
+    {
+        // Search for x in the unsorted array a[0:n-1]
+        // If found, return the corresponding position, otherwise return -1
+        int i;
+        for (i = 0; i < n && a[i] != x; i++);
+        if (i == n) return -1;
+        return i;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-1, Iterative sequential search function
+\end{center}
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    int SequentialSearch(T a[], const T &x, int n)
+    {
+        // Search for x in the unsorted array a[0:n-1]
+        // If found, return the corresponding position, otherwise return -1
+        a[n] = x; // Assume this position is valid
+        int i;
+        for (i = 0; a[i] != x; i++);
+        if (i == n) return -1;
+        return i;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-28, Another iterative sequential search function
+\end{center}
+
+\textbf{Answer:}
+\begin{itemize}
+    \item In the worst case, the number of comparisons between x and the elements in a is $\mathbf{n+1}$ in program 2-28.
+    \item The number of comparisons between x and the elements in a is $\mathbf{n}$ in program 2-1.
+    \item The function in program 2-28 will run faster. Because there is also the comparison between i and n, the total comparison in program 2-28 is $\mathbf{n+2}$ times when the worst case, and the total comparison in program 2-1 is $\mathbf{2\times (n+1)}$ times when the worst case. Therefore, \textbf{the function in program 2-28 will run faster}.
+\end{itemize}
+
+\section{Problem 5}
+
+\textbf{Q24.}
+Calculate the average number of steps for the following functions:
+\begin{enumerate}
+    \item SequentialSearch (see program 2-2)
+          \begin{lstlisting}[language=C++]
+template <class T>
+int SequentialSearch(T a[], const T &x, int n)
+{
+    // Search for x in the unsorted array a[0:n-1]
+    // If found, return the corresponding position, otherwise return -1
+    int i;
+    for (i = 0; i < n && a[i] != x; i++);
+    if (i == n) return -1;
+    return i;
+}
+\end{lstlisting}
+          \begin{center}
+              Program 2-2, Iterative sequential search function
+          \end{center}
+    \item SequentialSearch (see program 2-28)
+    \item Insert (see program 2-10)
+          \begin{lstlisting}[language=C++]
+template <class T>
+void Insert(T a[], int &n, const T &x)
+{
+    // Insert element x into the ordered array a[0:n-1]
+    // Assume that the size of a exceeds n
+    int i;
+    for (i = n - 1; i >= 0 && x < a[i]; i--)
+        a[i + 1] = a[i];
+    a[i + 1] = x;
+    n++; // Added an element
+}
+\end{lstlisting}
+          \begin{center}
+              Program 2-10, Insert element x into the ordered array
+          \end{center}
+\end{enumerate}
+
+\textbf{Answer:}
+Donated one time of comparison of elements in a[0:n-1] as one step. The average number of steps is the average number of comparisons.
+\begin{enumerate}
+    \item \textbf{SequentialSearch (Program 2-2)}:
+          When target element $\mathbf{x}$ appear in position $\mathbf{i}$, the number of steps is $\mathbf{i+1}$. When the target element not exist, the total steps is $\mathbf{n+1}$. Assume all the possible situation get the equal probability, therefore the average number of steps is $\frac{1}{n+1}\cdot(\sum\limits_{i=0}^{n-1}(i+1)+n+1) =\boxed{\frac{n}{2}+1}$.
+    \item \textbf{SequentialSearch (Program 2-28)}:
+          Target element $\mathbf{x}$ that app is position $i$ needs $i+1$ steps, and the target element not exist needs $n+1$ steps. Assume all the possible situation get the equal probability, therefore the average number of steps is $\frac{1}{n+1}\cdot(\sum\limits_{i=0}^{n-1}(i+1)+n+1) =\boxed{\frac{n}{2}+1}$.
+    \item \textbf{Insert (Program 2-10)}:
+          There are n+1 possible insertion position. When insert into position before element $i$, the number of steps is $n-i+1$. When insert into the last position, the number of steps is 1. Assume all the possible situation get the equal probability, therefore the average number of steps is $\frac{1}{n+1}\cdot(\sum\limits_{i=0}^{n-1}(n-i+1)+1) =\boxed{\frac{n+3}{2}}$.
+\end{enumerate}
+
+\section{Problem 6}
+% 37. 计算以下函数的渐进复杂性,设计一个类似于图 2- 19至2 -22的频率表。
+% 2) MinMax(见程序2 -2 6)
+% 4) Mult( 见程序2-24 )
+% 6) Max( 见程序1-31)
+% 7) PolyEval(见程序2-3 )
+% 8) Horner(见程序2 -4)
+% 9) Rank( 见程序2 -5 )
+% 13) InsertionSort (见程序2-14)
+
+\textbf{Q37.}
+Calculate the asymptotic complexity of the following functions and design a frequency table similar to Figures 2-19 to 2-22.
+\begin{enumerate}
+    \item MinMax (see program 2-26)
+    \item Mult (see program 2-24)
+    \item Max (see program 1-31)
+    \item PolyEval (see program 2-3)
+    \item Horner (see program 2-4)
+    \item Rank (see program 2-5)
+    \item InsertionSort (see program 2-14)
+\end{enumerate}
+
+\subsection{Answers:}
+\subsubsection{MinMax (Program 2-26)}
+\begin{lstlisting}[language=C++]
+    template <class T>
+    bool MinMax(T a[], int n, T &min, T &max)
+    {
+        if (n < 1) return false;
+        min = max = a[0];
+        for (int i = 1; i < n; i++)
+        {
+            if (a[i] < min) min = a[i];
+            if (a[i] > max) max = a[i];
+        }
+        return true;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-26, Finding the maximum and minimum elements
+\end{center}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                                        & s/e                               & Frequency       & Total           \\
+        \hline
+        \verb|template <class T>|                          & 0                                 & 0               & $\Theta(0)$     \\
+        \verb|void MinMax(T a[], int n, T &min, T &max) {| & 0                                 & 0               & $\Theta(0)$     \\
+        \verb|  if (n < 1) return false;|                  & 1                                 & 1               & $\Theta(1)$     \\
+        \verb|  min = max = a[0];|                         & 1                                 & 1               & $\Theta(1)$     \\
+        \verb|  for (int i = 1; i < n; i++) {|             & 1                                 & $\Theta(n)$     & $\Theta(n)$     \\
+        \verb|      if (a[i] < min) min = a[i];|           & 1                                 & $\Omega(1)O(n)$ & $\Omega(1)O(n)$ \\
+        \verb|      if (a[i] > max) max = a[i];|           & 1                                 & $\Omega(1)O(n)$ & $\Omega(1)O(n)$ \\
+        \verb|  }|                                         & 0                                 & 0               & $\Theta(0)$     \\
+        \verb|  return true;|                              & 1                                 & 1               & $\Theta(1)$     \\
+        \verb|}|                                           & 0                                 & 0               & 0               \\
+        \hline
+        \multicolumn{1}{|c|}{total}                        & \multicolumn{3}{|c|}{$\Theta(n)$}                                     \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of MinMax}
+\end{table}
+Therefore,
+\begin{align}
+    \boxed{t_{\text{MinMax}}(n) = O(n) = \Theta(n) = \Omega(n)}
+\end{align}
+
+\subsubsection{Mult (Program 2-24)}
+\begin{lstlisting}[language=C++]
+    template <class T>
+    void Mult(T **a, T **b, T **c, int n)
+    {
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+            {
+                T sum = 0;
+                for (int k = 0; k < n; k++)
+                    sum += a[i][k] * b[k][j];
+                c[i][j] = sum;
+            }
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-24, Multiplication of two n×n matrices
+\end{center}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                                    & s/e                                 & Frequency     & Steps         \\
+        \hline
+        \verb|template <class T>|                      & 0                                   & 0             & $\Theta(0)$   \\
+        \verb|void Mult(T **a, T **b, T **c, int n) {| & 0                                   & 0             & $\Theta(0)$   \\
+        \verb|  for (int i = 0; i < n; i++) {|         & 1                                   & $\Theta(n)$   & $\Theta(n)$   \\
+        \verb|    for (int j = 0; j < n; j++) {|       & 1                                   & $\Theta(n^2)$ & $\Theta(n^2)$ \\
+        \verb|      T sum = 0;|                        & 1                                   & $\Theta(n^2)$ & $\Theta(n^2)$ \\
+        \verb|        for (int k = 0; k < n; k++) {|   & 1                                   & $\Theta(n^3)$ & $\Theta(n^3)$ \\
+        \verb|          sum += a[i][k] * b[k][j];|     & 1                                   & $\Theta(n^3)$ & $\Theta(n^3)$ \\
+        \verb|        }|                               & 0                                   & 0             & $\Theta(0)$   \\
+        \verb|        c[i][j] = sum;|                  & 1                                   & $\Theta(n^2)$ & $\Theta(n^2)$ \\
+        \verb|    }|                                   & 0                                   & 0             & $\Theta(0)$   \\
+        \verb|  }|                                     & 0                                   & 0             & $\Theta(0)$   \\
+        \verb|}|                                       & 0                                   & 0             & 0             \\
+        \hline
+        \multicolumn{1}{|c|}{total}                    & \multicolumn{3}{|c|}{$\Theta(n^3)$}                                 \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of Mult}
+\end{table}
+
+Therefore,
+\begin{equation}
+    \boxed{t_{\text{Mult}}(n) = O(n^3) = \Theta(n^3) = \Omega(n^3)}
+\end{equation}
+
+\subsubsection{Max (Program 1-31)}
+
+% template<class T>
+% int Max(T a[], int n)
+% {// 寻找 a[0 :n- 1]中的最大元素
+% int pos = 0;
+% for (int i = 1; i < n; i++)
+% if (a[pos] < a[i])
+% pos = i;
+% }
+% return pos;
+% }
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    int Max(T a[], int n)
+    {
+        // Find the maximum element in a[0:n-1]
+        int pos = 0;
+        for (int i = 1; i < n; i++)
+            if (a[pos] < a[i])
+                pos = i;
+        return pos;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 1-31, Finding the maximum element
+\end{center}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                            & s/e                               & Frequency       & Steps           \\
+        \hline
+        \verb|template <class T>|              & 0                                 & 0               & $\Theta(0)$     \\
+        \verb|int Max(T a[], int n) {|         & 0                                 & 0               & $\Theta(0)$     \\
+        \verb|  int pos = 0;|                  & 1                                 & 1               & $\Theta(1)$     \\
+        \verb|  for (int i = 1; i < n; i++) {| & 1                                 & $\Theta(n)$     & $\Theta(n)$     \\
+        \verb|    if (a[pos] < a[i])|          & 1                                 & $\Omega(1)O(n)$ & $\Omega(1)O(n)$ \\
+        \verb|      pos = i;|                  & 1                                 & $\Omega(1)O(n)$ & $\Omega(1)O(n)$ \\
+        \verb|  }|                             & 0                                 & 0               & $\Theta(0)$     \\
+        \verb|  return pos;|                   & 1                                 & 1               & $\Theta(1)$     \\
+        \verb|}|                               & 0                                 & 0               & 0               \\
+        \hline
+        \multicolumn{1}{|c|}{total}            & \multicolumn{3}{|c|}{$\Theta(n)$}                                     \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of Max}
+\end{table}
+Therefore,
+\begin{align}
+    \boxed{t_{\text{Max}}(n) = O(n) = \Theta(n) = \Omega(n)}
+\end{align}
+
+\subsubsection{PolyEval (Program 2-3)}
+% template <class T>
+% T PolyEval(T coeff[], int n, const T& x)
+% { / /计算n次多项式的值, coeff[0:n ]为多项式的系数
+% T y=1, value= coeff [ 0];
+% for ( int i = 1; i <= n; i++)
+% {//累加下一项
+% y *= x;
+% value += y * coeff[i];
+% }
+% return value;
+% }
+\begin{lstlisting}[language=C++]
+    template <class T>
+    T PolyEval(T coeff[], int n, const T &x)
+    { // Calculate the value of an n-degree polynomial, coeff[0:n] is the coefficient of the polynomial
+        T y = 1, value = coeff[0];
+        for (int i = 1; i <= n; i++)
+        { // Accumulate the next term
+            y *= x;
+            value += y * coeff[i];
+        }
+        return value;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-3, Calculate the value of an n-degree polynomial
+\end{center}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                                       & s/e                               & Frequency   & Steps       \\
+        \hline
+        \verb|template <class T>|                         & 0                                 & 0           & $\Theta(0)$ \\
+        \verb|T PolyEval(T coeff[], int n, const T &x) {| & 0                                 & 0           & $\Theta(0)$ \\
+        \verb|  T y = 1, value = coeff[0];|               & 1                                 & 1           & $\Theta(1)$ \\
+        \verb|  for (int i = 1; i <= n; i++) {|           & 1                                 & $\Theta(n)$ & $\Theta(n)$ \\
+        \verb|    y *= x;|                                & 1                                 & $\Theta(n)$ & $\Theta(n)$ \\
+        \verb|    value += y * coeff[i];|                 & 1                                 & $\Theta(n)$ & $\Theta(n)$ \\
+        \verb|  }|                                        & 0                                 & 0           & $\Theta(0)$ \\
+        \verb|  return value;|                            & 1                                 & 1           & $\Theta(1)$ \\
+        \verb|}|                                          & 0                                 & 0           & 0           \\
+        \hline
+        \multicolumn{1}{|c|}{total}                       & \multicolumn{3}{|c|}{$\Theta(n)$}                             \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of PolyEval}
+\end{table}
+Therefore,
+\begin{align}
+    \boxed{t_{\text{PolyEval}}(n) = O(n) = \Theta(n) = \Omega(n)}
+\end{align}
+
+\subsubsection{Horner (Program 2-4)}
+% template <class T>
+% T Horner(T coeff[], int n, const T& x)
+% { / /计算n次多项式的值, coeff[0:n]为多项式的系数
+% T value= coeff [n];
+% for( int i = 1; i <= n; i++)
+% value = value * x + coeff [n-i];
+% return value;
+% }
+\begin{lstlisting}[language=C++]
+    template <class T>
+    T Horner(T coeff[], int n, const T &x)
+    { // Calculate the value of an n-degree polynomial, coeff[0:n] is the coefficient of the polynomial
+        T value = coeff[n];
+        for (int i = 1; i <= n; i++)
+            value = value * x + coeff[n - i];
+        return value;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-4, Calculate the value of an n-degree polynomial
+\end{center}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                                     & s/e                               & Frequency   & Steps       \\
+        \hline
+        \verb|template <class T>|                       & 0                                 & 0           & $\Theta(0)$ \\
+        \verb|T Horner(T coeff[], int n, const T &x) {| & 0                                 & 0           & $\Theta(0)$ \\
+        \verb|  T value = coeff[n];|                    & 1                                 & 1           & $\Theta(1)$ \\
+        \verb|  for (int i = 1; i <= n; i++) {|         & 1                                 & $\Theta(n)$ & $\Theta(n)$ \\
+        \verb|    value = value * x + coeff[n - i];|    & 1                                 & $\Theta(n)$ & $\Theta(n)$ \\
+        \verb|  }|                                      & 0                                 & 0           & $\Theta(0)$ \\
+        \verb|  return value;|                          & 1                                 & 1           & $\Theta(1)$ \\
+        \verb|}|                                        & 0                                 & 0           & 0           \\
+        \hline
+        \multicolumn{1}{|c|}{total}                     & \multicolumn{3}{|c|}{$\Theta(n)$}                             \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of Horner}
+\end{table}
+Therefore,
+\begin{align}
+    \boxed{t_{\text{Horner}}(n) = O(n) = \Theta(n) = \Omega(n)}
+\end{align}
+
+\subsubsection{Rank (Program 2-5)}
+% template <class T>
+% void Rank(T a[], int n, int r[])
+% { / /计算a[0 : n- 1]中n个元素的排名
+% for ( int i = 1; i < n; i++)
+% r[i] = 0;
+%  //初始化
+% / /逐对比较所有的元素
+% for ( int i = 1; i < n; i++)
+% for ( int j = 1; j < i; j++)
+% if (a [j] <= a[ i]) r[ i ]+ + ;
+% else r[j ] + + ;
+% }
+\begin{lstlisting}[language=C++]
+    template <class T>
+    void Rank(T a[], int n, int r[])
+    { // Calculate the rank of n elements in a[0:n-1]
+        for (int i = 1; i < n; i++)
+            r[i] = 0;
+        // Initialize
+        // Compare all elements in pairs
+        for (int i = 1; i < n; i++)
+            for (int j = 1; j < i; j++)
+                if (a[j] <= a[i]) r[i]++;
+                else r[j]++;
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-5, Calculate the rank of n elements
+\end{center}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                               & s/e                                 & Frequency         & Steps             \\
+        \hline
+        \verb|template <class T>|                 & 0                                   & 0                 & $\Theta(0)$       \\
+        \verb|void Rank(T a[], int n, int r[]) {| & 0                                   & 0                 & $\Theta(0)$       \\
+        \verb|  for (int i = 1; i < n; i++) {|    & 1                                   & $\Theta(n)$       & $\Theta(n)$       \\
+        \verb|    r[i] = 0;|                      & 1                                   & $\Theta(n)$       & $\Theta(n)$       \\
+        \verb|  }|                                & 0                                   & 0                 & $\Theta(0)$       \\
+        \verb|  for (int i = 1; i < n; i++) {|    & 1                                   & $\Theta(n)$       & $\Theta(n)$       \\
+        \verb|    for (int j = 1; j < i; j++) {|  & 1                                   & $\Theta(n^2)$     & $\Theta(n^2)$     \\
+        \verb|      if (a[j] <= a[i]) r[i]++;|    & 1                                   & $\Omega(n)O(n^2)$ & $\Omega(n)O(n^2)$ \\
+        \verb|      else r[j]++;|                 & 1                                   & $\Omega(n)O(n^2)$ & $\Omega(n)O(n^2)$ \\
+        \verb|    }|                              & 0                                   & 0                 & $\Theta(0)$       \\
+        \verb|  }|                                & 0                                   & 0                 & $\Theta(0)$       \\
+        \verb|}|                                  & 0                                   & 0                 & 0                 \\
+        \hline
+        \multicolumn{1}{|c|}{total}               & \multicolumn{3}{|c|}{$\Theta(n^2)$}                                         \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of Rank}
+\end{table}
+
+Therefore,
+\begin{align}
+    \boxed{t_{\text{Rank}}(n) = O(n^2) = \Theta(n^2) = \Omega(n^2)}
+\end{align}
+
+\subsubsection{InsertionSort (Program 2-14)}
+% template<class T>
+% void Insert(T a[], int n, const T& x)
+% {// 向有序数组 a [ 0:n -1 ]中插入元素 x
+% int i;
+% for (i = n-1; i >= 0 && x < a[i]; i--)
+% a[i+1] = a[i];
+% a[i+1] = x;
+% }
+% template<class T>
+% void InsertionSort(T a[], int n)
+% {// 对 a[ 0:n-1 ]进行排序
+% for (int i = 1; i < n; i++) {
+% T t = a[i];
+% Insert(a, i, t);
+% }
+% }
+
+\begin{lstlisting}[language=C++]
+    template <class T>
+    void Insert(T a[], int n, const T &x)
+    { // Insert element x into the ordered array a[0:n-1]
+        int i;
+        for (i = n - 1; i >= 0 && x < a[i]; i--)
+            a[i + 1] = a[i];
+        a[i + 1] = x;
+    }
+    template <class T>
+    void InsertionSort(T a[], int n)
+    { // Sort a[0:n-1]
+        for (int i = 1; i < n; i++)
+        {
+            T t = a[i];
+            Insert(a, i, t);
+        }
+    }
+\end{lstlisting}
+\begin{center}
+    Program 2-14, Insert element x into the ordered array
+\end{center}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        Expressions                                       & s/e                                 & Frequency       & Steps             \\
+        \hline
+        \verb|template <class T>|                         & 0                                   & 0               & $\Theta(0)$       \\
+        \verb|void Insert(T a[], int n, const T &x) {|    & 0                                   & 0               & $\Theta(0)$       \\
+        \verb|  int i;|                                   & 1                                   & 1               & $\Theta(1)$       \\
+        \verb|  for (i = n - 1; i >= 0 && x < a[i]; i--)| & 1                                   & $\Omega(1)O(n)$ & $\Omega(1)O(n)$   \\
+        \verb|    a[i + 1] = a[i];|                       & 1                                   & $\Omega(1)O(n)$ & $\Omega(1)O(n)$   \\
+        \verb|  a[i + 1] = x;|                            & 1                                   & $1$             & $\Theta(1)$       \\
+        \verb|}|                                          & 0                                   & 0               & $\Theta(0)$       \\
+        \hline
+        \multicolumn{4}{|c|}{$t_{\text{Insert}}(n) = \Omega(1) = \Theta(n)=O(n) $}                                                    \\
+        \hline
+        \verb|template <class T>|                         & 0                                   & 0               & $\Theta(0)$       \\
+        \verb|void InsertionSort(T a[], int n) {|         & 0                                   & 0               & $\Theta(0)$       \\
+        \verb|  for (int i = 1; i < n; i++) {|            & 1                                   & $\Theta(n)$     & $\Theta(n)$       \\
+        \verb|    T t = a[i];|                            & 1                                   & $\Theta(n)$     & $\Theta(n)$       \\
+        \verb|    Insert(a, i, t);|                       & $\Omega(1)O(n)$                     & $\Theta(n)$     & $\Omega(n)O(n^2)$ \\
+        \verb|  }|                                        & 0                                   & 0               & $\Theta(0)$       \\
+        \verb|}|                                          & 0                                   & 0               & 0                 \\
+        \hline
+        \multicolumn{1}{|c|}{total}                       & \multicolumn{3}{|c|}{$\Theta(n^2)$}                                       \\
+        \hline
+    \end{tabular}
+    \caption{Frequency table of InsertionSort}
+\end{table}
+
+Therefore,
+\begin{align}
+    \boxed{t_{\text{InsertionSort}}(n) = O(n^2) = \Theta(n^2) = \Omega(n)}
+\end{align}
+
+\end{document}

@@ -1,0 +1,222 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} % For Unicode characters
+\usepackage{amsmath}        % For mathematical symbols
+\usepackage{graphicx}       % For including images
+\usepackage{hyperref}       % For hyperlinks
+\usepackage{geometry}      % For setting page margins
+\usepackage{float}
+\usepackage{tcolorbox}
+\usepackage{tikz}
+\usepackage{indentfirst}
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+
+\title{Engineering Optics, Homework 4}
+\author{He Tianyang}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\section{Problem 1}
+\textbf{Chapter 4, Problem 1}\\\\
+
+In this case, the negative file is the field diaphragm, with a size $55\times 55\textbf{mm}$
+and with the focus length $75\textbf{mm}$.
+Therefore, we have
+\begin{equation}
+    \boxed{
+        \Phi = 2\cdot \arctan{\frac{55\cdot \sqrt{2}}{2\cdot 75}} \approx 54.82^{\circ}
+    }
+\end{equation}
+
+\section{Problem 2}
+\textbf{Chapter 4, Problem 3}\\\\
+
+Given the following parameters for the binoculars:
+
+\begin{itemize}
+    \item Objective lens diameter \(D = 30\,mm\)
+    \item Objective lens focal length \(f_o = 108\,mm\)
+    \item Eyepiece focal length \(f_e = 18\,mm\)
+    \item Exit pupil distance \(\geq 11\,mm\)
+    \item Exit pupil diameter \(= 5\,mm\)
+    \item Eyepiece clear aperture \(= 20\,mm\)
+    \item Without field stop 
+\end{itemize}
+
+
+The formula for the field of view (FoV) is given by:
+
+\[
+\text{FoV} = 2 \cdot \tan^{-1}\left(\frac{D}{2f_{o}}\right)
+\]
+
+Substituting the given values:
+
+\[
+\text{FoV}_{\text{max}} = 2 \cdot \tan^{-1}\left(\frac{30}{2 \cdot 108}\right)
+\]
+
+This yields:
+
+\[
+\boxed{\text{FoV}_{\text{max}} \approx 15.81^\circ}
+\]
+
+Considering the vignetting coefficient \(k\), the effective diameter is halved. Using this in the formula:
+
+\[
+\text{FoV}_k = 2 \cdot \tan^{-1}\left(\frac{k \cdot D}{2f_{o}}\right)
+\]
+
+Substituting \(k = 0.5\):
+
+\[
+\text{FoV}_k = 2 \cdot \tan^{-1}\left(\frac{0.5 \cdot 30}{2 \cdot 108}\right)
+\]
+
+This gives:
+
+\[
+\boxed{\text{FoV}_k \approx 7.94^\circ}
+\]
+
+\section{Problem 3}
+\textbf{Chapter 4, Problem 4}\\\\
+
+With the magnification $\beta = -1$, the object is placed at 2 times focus length.
+Therefore, we have
+\begin{equation}
+    f_1'+(-f) = d
+\end{equation}
+
+Therefore, we can calculated that
+\begin{equation*}
+    f_1' = 36.7mm
+\end{equation*}
+
+\section{Problem 4}
+\textbf{Example 4   -5}\\\\
+
+\subsection{question 1}
+According to the problem, we have the magnification $\beta = -4$, and $(-l)+l'=180$
+
+That is,
+\begin{align}
+    l = -36mm\\
+    l' = 144mm   
+\end{align}
+
+Therefore, using the lens formula, we have
+\begin{equation}
+    \frac{1}{f'} = \frac{1}{l'} - \frac{1}{l}
+\end{equation}
+
+which gives
+\begin{equation}
+    \boxed{f' = 28.8mm}
+\end{equation}
+
+\subsection{question 2}
+In this case, the objective lens is the aperture diaphragm, Therefore
+\begin{equation}
+    \boxed{
+        D_{Object} = 2\cdot(-l)\cdot\tan{-u} = 10.89mm
+    }
+\end{equation}
+
+\subsection{question 3}
+
+According to 
+
+\begin{equation}
+    \frac{D'}{D_{Object}} = \left|\frac{l'}{l}\right| = \frac{18.6}{100.67}
+\end{equation}
+
+we have
+\begin{equation}
+    \boxed{
+        D' =  10.89\cdot \frac{18.6}{100.67} = 1.26mm
+    }
+\end{equation}
+
+\subsection{question 4}
+
+Assume the height of the main Optics is $h$, then we have
+\begin{equation}
+    \left|h\right| = \left|y\cdot\frac{l'-f_2}{l}\right| = 8.93mm
+\end{equation}
+
+And, we have
+\begin{itemize}
+    \item When $K=1$, $D = 19.12mm$
+    \item When $K=0.5$, $D = 17.86mm$
+    \item When $K=0$, $D = 16.6mm$
+\end{itemize}
+
+
+\section{Problem 5}
+1. A stop 8mm in diameter is placed halfway between an extended object and a large-diameter lens of 9cm focal length. The lens projects an image of the object onto a screen 14cm away. What is the diameter of the exit pupil?\\
+
+
+The diameter of the stop is given as \(0.8\) cm (converted from \(8\) mm to cm). The focal length (\(f\)) of the lens is \(9\) cm, and the distance (\(v\)) from the lens to the screen is \(14\) cm.
+
+Using the lens equation
+
+\begin{equation}
+\frac{1}{f} = \frac{1}{v} - \frac{1}{u},
+\end{equation}
+
+where \(u\) is the object distance from the lens, we can solve for \(u\) to find the object distance. Once \(u\) is found, the magnification (\(M\)) of the system can be calculated using
+\begin{equation}
+M = -\frac{v}{u}.
+\end{equation}
+
+The diameter of the exit pupil (\(D_{exit}\)) is then determined by scaling the diameter of the stop (\(D_{stop}\)) by the absolute value of the magnification,
+\begin{equation}
+D_{exit} = D_{stop} \cdot |M|.
+\end{equation}
+
+After solving these equations, we find the diameter of the exit pupil to be \textbf{\(\mathbf{2.04}\) cm}.
+
+
+
+\section{Problem 6}
+2. Two lenses, a lens of 12.5cm focal length and a minus lens of unknown power, are mounted coaxially and  8 cm apart. The system is afocal, that is light entering the system parallel at one side emerges parallel at the other. If a stop 15mm in diameter is placed halfway between the lenses:
+
+\begin{itemize}
+    \item Where is the entrance pupil?
+    \item Where is the exit pupil?
+    \item What are their diameters?
+\end{itemize}
+
+
+
+Given:
+\begin{itemize}
+    \item Focal length of the first lens (\(f_1\)) = \(12.5\) cm
+    \item Distance between the lenses (\(d\)) = \(8\) cm
+    \item Diameter of the stop = \(15\) mm = \(1.5\) cm
+\end{itemize}
+
+Since the system is afocal, the effective focal length of the system is infinity. The formula for the effective focal length of two lenses separated by distance \(d\) is given by
+\begin{equation}
+\frac{1}{F} = \frac{1}{f_1} + \frac{1}{f_2} - \frac{d}{f_1 f_2}
+\end{equation}
+where \(F = \infty\) for an afocal system, thus \(\frac{1}{F} = 0\).
+
+Solving for \(f_2\), we find \(f_2 = -4.5\) cm, indicating that the second lens is a diverging lens with a focal length of \(-4.5\) cm.
+
+Since the stop is located exactly halfway between the two lenses, and given the afocal nature of the system:
+\begin{itemize}
+    \item The entrance pupil is located 4 cm from the first lens.
+    \item The exit pupil is located 4 cm from the second lens.
+    \item The diameters of both the entrance and exit pupils are equal to the diameter of the stop, which is \(1.5\) cm.
+\end{itemize}
+
+\end{document}

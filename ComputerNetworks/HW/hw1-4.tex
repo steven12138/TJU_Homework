@@ -1,0 +1,62 @@
+\documentclass{cshwk}
+
+\begin{document}
+\title{HW \#1, Chapter 1}
+\maketitle
+
+
+
+\section*{Problem 4. Chapter 1 P25}
+
+Suppose two hosts, A and B, are separated by 20,000 kilometers and are connected by a direct link of $R = 5 \mathbf{Mbps}$. Suppose the propagation speed over the link is $2.5 \times 10^8$ m/s.
+
+a. Calculate the bandwidth-delay product, $R \times d_{prop}$.
+
+b. Consider sending a file of 800,000 bits from Host A to Host B. Suppose the file is sent continuously as one large message. What is the maximum number of bits that will be in the link at any given time?
+
+c. Provide an interpretation of the bandwidth-delay product.
+
+d. What is the width (in meters) of a bit in the link? Is it longer than a football field?
+
+e. Derive a general expression for the width of a bit in terms of the propagation speed $s$, the transmission rate $R$, and the length of the link $m$.
+
+\subsection*{Solutions:}
+
+\noindent\textbf{a.} The propagation delay $d_{prop}$ can be calculate as:
+$$
+    d_{prop} = \frac{l}{s} = \frac{20,000,000 \mathbf{m}}{2.5 \times 10^8 \mathbf{m/s}} = 0.08 \mathbf{s}
+$$
+bandwidth-delay product is:
+$$
+    R \times d_{prop} = 5 \times 10^6 \mathbf{bps} \times 0.08 \mathbf{s} = 400,000 \mathbf{bits}
+$$
+\\
+
+\noindent\textbf{b.} The maximum number of bits that will be in the link at any given time is the bandwidth-delay product, \textbf{which is 400,000 bits}.
+\\
+
+\noindent\textbf{c.} The bandwidth-delay product represents \textbf{the maximum number of bits that can be in transit on the link at any given time.} It is a measure of the link's capacity to hold data—often referred to as the "pipe capacity." It tells us how much data can be "in flight" before the first bit reaches the destination, combining both the bandwidth (data rate) and the propagation delay (distance and speed).
+\\
+
+\noindent\textbf{d.} Bit duration $t_{bit}$ is the time it takes for a bit to be transmitted from the sender to the receiver. It can be calculated as:
+$$
+    t_{bit} = \frac{1}{R} = \frac{1}{5 \times 10^6 \mathbf{bps}} = 2 \times 10^{-7} \mathbf{s}
+$$
+Width of a bit $w_{bit}$ is the distance a bit occupies on the link. It can be calculated as:
+$$
+    w_{bit} = s \times t_{bit} = 2.5 \times 10^8 \mathbf{m/s} \times 2 \times 10^{-7} \mathbf{s} = 50 \mathbf{m}
+$$
+An American football field about 100 yards long, which is 91.44 meters. So, the width of a bit is \textbf{shorter than a football field}.
+\\
+
+\noindent\textbf{e.} The width of a bit $w_{bit}$ is the physical distance that a single bit occupies on the link. It can be derived using the propagation speed and the bit duration:
+$$
+    w_{bit} = s \times t_{bit} = s \times \frac{1}{R} = \frac{s}{R}
+$$
+Therefore, the general expression can be written as:
+$$
+    \boxed{
+        w_{bit} = \frac{s}{R}
+    }
+$$
+\end{document}

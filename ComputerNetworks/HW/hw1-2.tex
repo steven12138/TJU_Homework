@@ -1,0 +1,72 @@
+\documentclass{cshwk}
+
+\begin{document}
+\title{HW \#1, Chapter 1}
+\maketitle
+
+\section*{Problem 2. Chapter 1 P6}
+This elementary problem begins to explore propagation delay and transmission delay, two central concepts in data networking. Consider two hosts, A and B, connected by a single link of rate R bps. Suppose that the two hosts are separated by m meters, and suppose the propagation speed along the link is S meters/sec. Host A is to send a packet of size L bits to Host B.
+
+a. Express the propagation delay, \( d_{\text{prop}} \), in terms of m and S.
+
+b. Determine the transmission time of the packet, \( d_{\text{trans}} \), in terms of L and R.
+
+c. Ignoring processing and queuing delays, obtain an expression for the end-to-end delay.
+
+d. Suppose Host A begins to transmit the packet at time \( t = 0 \). At time \( t = d_{\text{trans}} \), where is the last bit of the packet?
+
+e. Suppose \( d_{\text{prop}} \) is greater than \( d_{\text{trans}} \). At time \( t = d_{\text{trans}} \), where is the first bit of the packet?
+
+f. Suppose \( d_{\text{prop}} \) is less than \( d_{\text{trans}} \). At time \( t = d_{\text{trans}} \), where is the first bit of the packet?
+
+g. Suppose \( S = 2.5 \times 10^8 \) m/s, \( L = 1500 \) bytes, and \( R = 10 \) Mbps. Find the distance m so that \( d_{\text{prop}} \) equals \( d_{\text{trans}} \).
+
+\subsection*{Solutions:}
+
+\noindent\textbf{a.} the propagation delay can be represents by:
+$$
+    \boxed{
+        d_{props} = \frac{m}{S}
+    }
+$$
+\noindent\textbf{b.} the transmission time of the packet $d_{trans}$ can be represents by:
+$$
+    \boxed{
+        d_{trans} = \frac{L}{R}
+    }
+$$
+\noindent\textbf{c.} Ignoring processing and queuing delays, the end-to-end delay is the sum of the transmission delay and the propagation delay:
+$$
+    \boxed{
+        \textbf{End-to-end delay} = d_{trans} + d_{props}
+    }
+$$
+
+\noindent\textbf{d.} At time $t = d_{trans}$, the last bit has just been fully tarnsmitted onto the link but hasn't started propagating yet. \textbf{Therefore, the last bit is still at Host A, ready to begin its propagation to Host B.}
+
+\noindent\textbf{e.} If $d_{prop} > d_{trans}$, at time $t=d_{trans}$, the first bit has been propagating for $d_{trans}$ seconds. It hasn't reached Host B yet. The distance it has covered is:
+$$
+    \textbf{Distance from Host A} = S \times d_{trans}
+$$
+\textbf{Therefore, the first bit is at $S\times d_{trans}$ meters away from Host A.}
+\\
+
+\noindent\textbf{f.} If $d_{prop} < d_{trans}$, at time $t=d_{trans}$,he first bit has already reached Host B and has been there for:
+$$
+    \textbf{Time at Host B} = d_{trans} - d_{props}
+$$
+\textbf{Therefore, the first bit is at Host B.}
+
+\noindent\textbf{g.} To find the distance $m$ where $d_{prop} = d_{trans}$
+By given, we have:
+$$
+    \frac{m}{S} = \frac{L}{R}
+$$
+solve for m:
+$$
+    \boxed{
+        m = \frac{S\cdot L}{R} = \frac{2.5\times 10^8 \textbf{m/s}\cdot 1500 \textbf{bytes}}{10 \times 10^6 \textbf{Mbps}} = 300,000\textbf{meters}
+    }
+$$
+
+\end{document}

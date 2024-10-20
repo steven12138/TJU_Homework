@@ -1,0 +1,30 @@
+\documentclass{cshwk}
+
+\title{HW \#3, Chapter 3}
+\begin{document}
+
+\maketitle
+
+\section*{Chapter 3, P24.}
+
+Answer true or false to the following QUESTIONS and briefly justify your answer:
+
+\begin{enumerate}
+    \item With the SR protocol, it is possible for the sender to receive an ACK for a packet that falls outside of its current window.
+    \item With GBN, it is possible for the sender to receive an ACK for a packet that falls outside of its current window.
+    \item The alternating-bit protocol is the same as the SR protocol with a sender and receiver window size of 1.
+    \item The alternating-bit protocol is the same as the GBN protocol with a sender and receiver window size of 1.
+\end{enumerate}
+
+\subsection*{Solutions:}
+
+
+\paragraph{a.} \textbf{True}. In the Selective Repeat (SR) protocol, acknowledgments (ACKs) are sent for individual packets. Due to network delays and the finite sequence number space, the sender's window can advance beyond certain sequence numbers while ACKs for those packets are still in transit. Consequently, the sender may receive an ACK for a packet that falls outside its current window.
+
+\paragraph{b.} \textbf{True}. In the Go-Back-N (GBN) protocol, ACKs are cumulative, acknowledging all packets up to a certain sequence number. If delayed ACKs arrive after the sender's window has moved forward, these ACKs might correspond to sequence numbers that are no longer within the sender's current window.
+
+\paragraph{c.} \textbf{True}. The alternating-bit protocol is equivalent to the SR protocol with both the sender and receiver window sizes set to 1. This means the sender transmits one packet and waits for its individual ACK before sending the next, and the receiver can accept one packet at a time, sending individual ACKs—mirroring SR's behavior with window size 1.
+
+\paragraph{d.} \textbf{True}. Similarly, the alternating-bit protocol is the same as the GBN protocol with sender and receiver window sizes of 1. With such a window size, the sender sends one packet and waits for an ACK before proceeding, and the receiver only accepts packets in order, discarding any out-of-order packets—aligning with GBN's operation under these conditions.
+
+\end{document}

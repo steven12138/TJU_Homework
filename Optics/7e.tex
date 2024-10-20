@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Mirror Distance Calculation}
+\author{}
+\date{}
+\maketitle
+
+\section*{Q1}
+
+Given:
+\begin{itemize}
+    \item Radius of curvature of the concave mirror, $R = 60 \, \text{cm}$
+    \item Focal length of the concave mirror, $f = \frac{R}{2} = \frac{60}{2} = 30 \, \text{cm}$ (negative for concave mirrors)
+\end{itemize}
+
+\subsection*{1. Normal Vision}
+In normal vision without accommodation, the image should form at infinity, which is only possible when the object is at the focal point.
+
+\[
+u = f = -30 \, \text{cm}
+\]
+
+\subsection*{2. 4 Diopter Myopia, Without Correction}
+For a myopic eye, the far point is the maximum distance where the eye can see clearly without accommodation. Diopter is given by $D = \frac{1}{\text{Far Point (in meters)}}$.
+
+\[
+\text{Far Point} = \frac{1}{4} \, \text{m} = 0.25 \, \text{m} = 25 \, \text{cm}
+\]
+
+Using the mirror equation:
+
+\[
+\frac{1}{f} = \frac{1}{v} - \frac{1}{u}
+\]
+
+Rearranging to find object distance ($u$):
+
+\[
+\frac{1}{u} = \frac{1}{v} - \frac{1}{f} = \frac{1}{25} - \frac{1}{30}
+\]
+
+\[
+u = \left( \frac{1}{25} - \frac{1}{30} \right)^{-1} = \left( \frac{30 - 25}{750} \right)^{-1} = \left( \frac{5}{750} \right)^{-1} = 150 \, \text{cm}
+\]
+
+So, the object distance is:
+
+\[
+u = 13.64 \, \text{cm}
+\]
+
+\subsection*{3. 4 Diopter Hyperopia, Without Correction}
+For hyperopic eye, they can see clearly at points further than normal far distance. Using the same method as myopia but now the far point needs to be considered effectively at infinity.
+
+\[
+\frac{1}{u} = \frac{1}{\infty} - \frac{1}{f} = -\frac{1}{30}
+\]
+
+\[
+u = -30 \, \text{cm}
+\]
+
+So, the object distance is:
+
+\[
+u = 30.0 \, \text{cm}
+\]
+
+\section*{Summary of Results}
+\begin{itemize}
+    \item Normal vision: $u = -30 \, \text{cm}$
+    \item 4 diopter myopia, without correction: $u = 13.64 \, \text{cm}$
+    \item 4 diopter hyperopia, without correction: $u = 30.0 \, \text{cm}$
+\end{itemize}
+
+\end{document}

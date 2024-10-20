@@ -1,0 +1,74 @@
+\documentclass{cshwk}
+
+\title{HW \#3, Chapter 3}
+
+\begin{document}
+\maketitle
+
+\section*{Chapter 3, P32.}
+
+Consider the TCP procedure for estimating RTT. Suppose that $\alpha = 0.1$. Let SampleRTT1 be the most recent sample RTT, let SampleRTT2 be the next most recent sample RTT, and so on.
+
+\begin{enumerate}
+    \item[a.] For a given TCP connection, suppose four acknowledgments have been returned with corresponding sample RTTs: SampleRTT4, SampleRTT3, SampleRTT2, and SampleRTT1. Express EstimatedRTT in terms of the four sample RTTs.
+    \item[b.] Generalize your formula for $n$ sample RTTs.
+    \item[c.] For the formula in part (b) let $n$ approach infinity. Comment on why this averaging procedure is called an exponential moving average.
+\end{enumerate}
+
+\subsection*{Solutions}
+
+\paragraph{a.} We can express the Estimated RTT after receiving four acknowledgments with sample RTTs \(\text{SampleRTT}_4, \text{SampleRTT}_3, \text{SampleRTT}_2, \text{SampleRTT}_1\) using the exponential weighted moving average formula. Starting with the most recent sample \(\text{SampleRTT}_1\), we expand the recursive formula as follows:
+
+\[
+    \begin{aligned}
+        \text{EstimatedRTT} & = (1 - \alpha) \times \text{EstimatedRTT}_3 + \alpha \times \text{SampleRTT}_4                                                                \\
+                            & = (1 - \alpha) \left[ (1 - \alpha) \times \text{EstimatedRTT}_2 + \alpha \times \text{SampleRTT}_3 \right] + \alpha \times \text{SampleRTT}_4 \\
+                            & = (1 - \alpha)^2 \times \text{EstimatedRTT}_2 + (1 - \alpha) \alpha \times \text{SampleRTT}_3 + \alpha \times \text{SampleRTT}_4              \\
+                            & = (1 - \alpha)^2 \left[ (1 - \alpha) \times \text{EstimatedRTT}_1 + \alpha \times \text{SampleRTT}_2 \right]                                  \\
+                            & \quad + (1 - \alpha) \alpha \times \text{SampleRTT}_3 + \alpha \times \text{SampleRTT}_4                                                      \\
+                            & = (1 - \alpha)^3 \times \text{EstimatedRTT}_1 + (1 - \alpha)^2 \alpha \times \text{SampleRTT}_2                                               \\
+                            & \quad + (1 - \alpha) \alpha \times \text{SampleRTT}_3 + \alpha \times \text{SampleRTT}_4
+    \end{aligned}
+\]
+
+
+Assuming an initial \(\text{EstimatedRTT}_0\), we can include it in the expression:
+
+\[
+    \text{EstimatedRTT} = (1 - \alpha)^4 \times \text{EstimatedRTT}_0 + \alpha \sum_{k=1}^{4} (1 - \alpha)^{4 - k} \times \text{SampleRTT}_k
+\]
+
+
+With \(\alpha = 0.1\), the expression becomes:
+
+\[
+    \begin{aligned}
+        \text{EstimatedRTT} & = 0.9^4 \times \text{EstimatedRTT}_0                       \\
+                            & \quad + 0.1 \left( 0.9^3 \times \text{SampleRTT}_1 \right) \\
+                            & \quad + 0.1 \left( 0.9^2 \times \text{SampleRTT}_2 \right) \\
+                            & \quad + 0.1 \left( 0.9 \times \text{SampleRTT}_3 \right)   \\
+                            & \quad + 0.1 \times \text{SampleRTT}_4
+    \end{aligned}
+\]
+
+\paragraph{b.} Generalizing for \( n \) sample RTTs, the formula becomes:
+
+\[
+    \text{EstimatedRTT} = (1 - \alpha)^n \times \text{EstimatedRTT}_0 + \alpha \sum_{k=1}^{n} (1 - \alpha)^{n - k} \times \text{SampleRTT}_k
+\]
+
+This shows that the EstimatedRTT is a weighted sum of all past sample RTTs, where each sample is weighted by \(\alpha (1 - \alpha)^{n - k}\).
+
+\paragraph{c.} As \( n \) approaches infinity, the term \((1 - \alpha)^n \times \text{EstimatedRTT}_0\) approaches zero because \(0 < (1 - \alpha) < 1\). This means the influence of the initial EstimatedRTT diminishes over time. The weights assigned to older SampleRTTs decrease exponentially, emphasizing more recent samples. This behavior characterizes an \textbf{exponential moving average}, where:
+
+\begin{itemize}
+    \item Recent samples have a higher impact on the EstimatedRTT.
+    \item The sum of the weights approaches 1 as \( n \) approaches infinity.
+    \item The averaging gives exponentially less weight to older samples, capturing recent network conditions more accurately.
+\end{itemize}
+
+This method efficiently smooths out short-term variations while still being responsive to changes, which is essential for adaptive protocols like TCP.
+
+
+
+\end{document}

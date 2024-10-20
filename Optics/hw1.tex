@@ -1,0 +1,256 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc} % For Unicode characters
+\usepackage{amsmath}        % For mathematical symbols
+\usepackage{graphicx}       % For including images
+\usepackage{hyperref}       % For hyperlinks
+\usepackage{geometry}      % For setting page margins
+\usepackage{float}
+\usepackage{tcolorbox}
+
+% Set the page margins
+\geometry{margin=1in}
+% Set the top margins
+\addtolength{\topmargin}{-.5in}
+
+\title{Homework 1}
+\author{He Tianyang}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem 1}
+\textbf{Chapter 1, Problem 2}\\\\
+\textbf{Solve:} For the speed of light in a medium, we have the equation
+\begin{equation}
+    v = \frac{c}{n}
+\end{equation}
+Therefore, the speed of light in water, crown glass, flint glass, canada balsam, and diamond are
+\begin{align}
+     & v_{water}        =\frac{c}{n
+    }=\frac{3.00\times10^8 m/s}{1.33}=2.250\times10^8 m/s                                  \\
+     & v_{crownGlass}   =\frac{c}{n}=\frac{3.00\times10^8 m/s}{1.51}=1.987\times10^8 m/s   \\
+     & v_{flintGlass}   =\frac{c}{n}=\frac{3.00\times10^8 m/s}{1.65}=1.818\times10^8 m/s   \\
+     & v_{canadaBalsam}  =\frac{c}{n}=\frac{3.00\times10^8 m/s}{1.526}=1.966\times10^8 m/s \\
+     & v_{diamond}       =\frac{c}{n}=\frac{3.00\times10^8 m/s}{2.417}=1.241\times10^8 m/s
+\end{align}
+
+\section{Problem 2}
+\textbf{Chapter 1, Problem 4}\\\\
+\textbf{Solve:} Total internal reflection occurs when the angle of incidence is greater than the critical angle. The critical angle is given by
+\begin{equation}
+    \sin I_m = \frac{n_1}{n_2}\sin 90^\circ = \frac{n_1}{n_2}
+\end{equation}
+According to Trigonometric identities, and $I_m<\frac{\pi}{2}$, we have
+\begin{equation}
+    \tan I_m = \frac{\sin I_m}{\cos I_m} = \frac{\frac{2}{3}}{\sqrt{1-\frac{4}{9}}} = \frac{2}{\sqrt{5}}
+\end{equation}
+Therefore, the circle sized paper should cover the visible part of the glass. The radius of the circle is given by
+\begin{align}
+    r & = r_{metal}+h\cdot\tan I_m = 1+200\cdot\tan I_m                \\
+      & = 1+200\cdot\frac{2}{\sqrt{5}} \approx 1+178.88543=179.88543mm \\
+\end{align}
+\begin{equation}
+    \boxed{d  =2\cdot r = 359.77mm}
+\end{equation}
+Therefore, the minimum diameter of the circle is \textbf{359.77mm}.
+
+\section{Problem 3}
+\textbf{Chapter 1, Problem 8}\\
+To derive the numerical aperture ($n_0\sin I_1$), we utilize the geometrical relationship and the refraction law.
+\begin{align}
+    n_o\sin I_1 & = n_1\sin I       \\
+    I+I_m       & = 90^\circ        \\
+    sin I_m     & = \frac{n_2}{n_1}
+\end{align}
+Therefore, it's easy to derive that
+\begin{align}
+    \sin I=\cos I_m=\sqrt{1-\sin^2I_m}=\sqrt{1-\frac{n_2^2}{n_1^2}} = \frac{\sqrt{n_1^2-n_2^2}}{n_1}
+\end{align}
+Therefore, the numerical aperture is
+\begin{equation}
+    \boxed{
+        n_0\sin I_1 = n_1\sin I = n_1\frac{\sqrt{n_1^2-n_2^2}}{n_1} = \sqrt{n_1^2-n_2^2}}
+\end{equation}
+
+
+
+\section{Problem 4}
+\textbf{Chapter 1, Problem 16}
+\subsection{Problem 4(a)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{image/hw1/hw2_1.png}
+    \caption{The optics path of the lens.}
+    \label{fig:hw1_1}
+\end{figure}
+First, consider the front surface refraction.
+The image-side interpretation in a paraxial optics system of the lens formula is
+\begin{equation}
+    n'\left(\frac{1}{r}-\frac{1}{l'}\right)=n\left(\frac{1}{r}-\frac{1}{l}\right)=Q
+\end{equation}
+A parallel beam of light is equivalent to a beam of light from a point source at infinity. Therefore
+\begin{equation}
+    Q=\lim_{l\to\infty}n\left(\frac{1}{r}-\frac{1}{l}\right)=n\left(\frac{1}{r}-0\right)=\frac{n}{r}
+\end{equation}
+The image-side interpretation of the lens formula is
+\begin{equation}
+    n'\left(\frac{1}{r}-\frac{1}{l'}\right)=\frac{n}{r}
+\end{equation}
+And the solution of the equation is
+\begin{equation}
+    \boxed{l'=\frac{n'r}{n'-n}=\frac{1.5\cdot 30mm}{1.5-1}=90mm}
+\end{equation}
+Now, consider the rear half refractive surface. We have $r'=-r,n_3=n$
+\begin{equation}
+    \frac{n}{l_2'}-\frac{n'}{l'-2\cdot r}=\frac{n-n'}{-r}
+\end{equation}
+The solution of the equation is
+\begin{equation}
+    \boxed{l_2'=\frac{1}{\frac{1.5}{30mm}+\frac{1.5}{90mm-2\cdot30mm}} = 15mm}
+\end{equation}
+Therefore, the image is \textbf{real} and formed at \textbf{15mm} behind the rear surface of lens.\\
+
+
+
+\subsection{Problem 4(b)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{image/hw1/hw2_2.png}
+    \caption{reflective front surface}
+    \label{fig:hw1_2}
+\end{figure}
+If the front surface covered with a reflective coating, According to the reflection formula,
+\begin{equation}
+    \frac{1}{l'}+\frac{1}{l}=\frac{2}{r}
+\end{equation}
+That is
+\begin{equation}
+    \boxed{l'=\lim_{l\to\infty}\frac{r}{2-\frac{r}{l}}=\frac{r}{2}=15mm}
+\end{equation}
+Therefore, the image is \textbf{virtual} and formed at \textbf{15mm} behind the front surface of lens.
+
+
+\subsection{(c) Solve:}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{image/hw1/hw2_3.png}
+    \caption{reflective rear surface}
+    \label{fig:hw1_2}
+\end{figure}
+Covered the rear surface with a reflective coating, we have
+\begin{equation}
+    \frac{1}{l_2'}+\frac{1}{l'-2\cdot r}=\frac{2}{-r}
+\end{equation}
+That is
+\begin{equation}
+    \boxed{l_2'= -10mm}
+\end{equation}
+Therefore, the image is \textbf{real} and formed at \textbf{10mm} in front of the rear surface of lens.\\
+\subsection{Problem 4(d)}
+After that, the light continues to propagate through the lens, refract at the front surface\\
+We have.
+\begin{equation}
+    \frac{n}{l_3'}-\frac{n'}{2\cdot r+l2'}=\frac{n-n'}{r}
+\end{equation}
+That is
+\begin{equation}
+    \frac{1}{l_3'}-\frac{1.5}{60mm-10mm}=\frac{1-1.5}{30mm}
+\end{equation}
+The solution of the equation is
+\begin{equation}
+    \boxed{l_3' = 75mm}
+\end{equation}
+Therefore, the image is \textbf{virtual} and formed at \textbf{75mm} behind the front surface of lens.\\
+
+\section{Problem 5}
+\textbf{Chapter 1, Problem 18}\\
+Assume bubble A is positioned at the midpoint of the lens radius, while bubble B is at the lens center.\\
+First, consider watch from the right of the lens. According to the paraxial optics formula, we have
+\begin{align}
+    \frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+\end{align}
+Substitute the values where $n'=1.5, n=1, l_A=-300mm, l_B= r=-200mm$, we have
+\begin{equation}
+    \boxed{l_A'= -400mm, l_B' = -200mm}
+\end{equation}
+Then consider watch from the left of the lens. Optical path is reversible, hence, assume the light is from the left of the lens, we have
+\begin{equation}
+    l_A=100mm, l_B=200mm
+\end{equation}
+Therefore, applied the paraxial optics formula, we have
+\begin{equation}
+    \boxed{l_A'= 80mm, l_B'=200mm}
+\end{equation}
+To sum up, when looking from the left, the image of bubble A is positioned at \textbf{80mm} behind the lens, while the image of bubble B is positioned at \textbf{200mm} behind the lens. When looking from the right, the image of bubble A is positioned at \textbf{-400mm} behind the lens, while the image of bubble B is positioned at \textbf{-200mm} behind the lens.\\
+
+\section{Problem 6}
+\textbf{Chapter 1, Problem 19}\\
+
+\subsection{Problem 6(a) Gaussian image of the infinity object}
+
+Consider the first surface with a parallel light that does not coincide with the optical axis first, we have
+\begin{equation}
+    \frac{n'}{l'}-\frac{n}{l}=\frac{n'-n}{r}
+\end{equation}
+Substitute the values where $n'=1.5, n=1, l=\infty, r=100mm$, we have
+\begin{equation}
+    \boxed{l' = 300mm}
+\end{equation}
+Now, consider parallel light passing through the center of the sphere, i.e., along the optical axis. Two beams intersect at the second surface, resulting in the Gaussian image formed at the second surface, precisely at \textbf{300mm}.
+
+\subsection{Problem 6(b) Conjugate image of the pattern on the rear surface}
+
+Consider a parallel light beam with optical axis that from the top of the cross, we have
+\begin{equation}
+    \frac{n}{l'}-\frac{n'}{l}=\frac{n-n'}{-r},\quad l=\infty, r=-100mm, n=1, n'=1.5
+\end{equation}
+That is,
+\begin{equation}
+    l' = 200mm
+\end{equation}
+Note that $l'$ equals the distance from the center of the sphere to the rear surface. This implies that the refracted light becomes parallel to the light beam from the top to the center of the sphere, as illustrated in Figure \ref{fig:hw1_6}. Consequently, the conjugate image of the pattern on the rear surface will be \textbf{formed at an infinite distance}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{image/hw1/hw2_6.png}
+    \caption{paralleled light cause infinite distance image.}
+    \label{fig:hw1_6}
+\end{figure}
+
+\subsection{Problem 6(c) Real optical path analysis}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{image/hw1/hw2_7.png}
+    \caption{The optics path of the lens.}
+    \label{fig:hw1_6}
+\end{figure}
+
+
+For the real optical path, the image interpretation calculate like this:
+\begin{align}
+    n\sin I              & =n'\sin I'         \\
+    \frac{r}{\sin(I-I')} & =\frac{L'}{\sin I} \\
+    \sin I               & =\frac{h}{r}
+\end{align}
+We can calculate that,
+\begin{align}
+    \sin I' & =\frac{nh}{n'r} = \frac{1\cdot 10mm}{1.5\cdot 100mm}=\frac{1}{15} \\
+    \cos I' & =\sqrt{1-\sin^2I'} = \frac{4\sqrt{14}}{15}                        \\
+    \sin I  & = \frac{10mm}{100mm} = \frac{1}{10}                               \\
+    \cos I  & = \sqrt{1-\sin^2I} = \frac{3\sqrt{11}}{10}                        \\
+\end{align}
+Therefore, the real image interpretation is
+\begin{equation}
+    \boxed{L' =\frac{r\sin I}{sin(I-I')} = X \approx 298.998mm}
+\end{equation}
+The distance between the real image interpretation and the Gaussian image is
+\begin{equation}
+    \boxed{L' - l' = 298.998mm - 300mm = -1.002mm}
+\end{equation}
+The real image interpretation is \textbf{298.998mm}, with a deviation of \textbf{1.002mm} from the Gaussian image. This deviation arises due to the paraxial approximation, indicating imperfect spherical imaging, known as \textbf{spherical aberration}.
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+
+\begin{document}
+
+\title{Optics HW 15-E}
+\author{}
+\date{}
+\maketitle
+
+\subsection*{1. Light coming from water}
+
+To find the angle of incidence for complete polarization (Brewster's angle), we use Brewster's law:
+\[
+\tan \theta_w = \frac{n_{\text{flint}}}{n_{\text{water}}}
+\]
+
+Given:
+\[
+n_{\text{water}} = \frac{4}{3}, \quad n_{\text{flint}} = 1.72
+\]
+
+We need to solve for $\theta_w$:
+\[
+\theta_w = \arctan \left( \frac{n_{\text{flint}}}{n_{\text{water}}} \right)
+\]
+
+Substituting the values:
+\[
+\theta_w = \arctan \left( \frac{1.72}{\frac{4}{3}} \right) = \arctan \left( \frac{1.72 \times 3}{4} \right) = \arctan \left( \frac{5.16}{4} \right) = \arctan (1.29)
+\]
+
+Calculating the angle in degrees:
+\[
+\theta_w \approx 73.91^\circ
+\]
+
+\subsection*{2. Light coming from flint glass}
+
+For light coming from the flint glass side:
+\[
+\tan \theta_f = \frac{n_{\text{water}}}{n_{\text{flint}}}
+\]
+
+We need to solve for $\theta_f$:
+\[
+\theta_f = \arctan \left( \frac{n_{\text{water}}}{n_{\text{flint}}} \right)
+\]
+
+Substituting the values:
+\[
+\theta_f = \arctan \left( \frac{\frac{4}{3}}{1.72} \right) = \arctan \left( \frac{4}{3 \times 1.72} \right) = \arctan \left( \frac{4}{5.16} \right) = \arctan (0.775)
+\]
+
+Calculating the angle in degrees:
+\[
+\theta_f \approx 44.42^\circ
+\]
+
+Therefore.
+\begin{enumerate}
+    \item The angle of incidence for complete polarization when light comes from the water side is approximately $73.91^\circ$.
+    \item The angle of incidence for complete polarization when light comes from the flint glass side is approximately $44.42^\circ$.
+\end{enumerate}
+
+\end{document}
